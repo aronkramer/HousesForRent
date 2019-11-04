@@ -1,0 +1,35 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
+
+namespace HousesForRent.Models
+{
+    public class LeasersInformation
+    {
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        [Column(TypeName = "VARCHAR")]
+        [StringLength(50)]
+        public string ContactInfo { get; set; }
+        [Required]
+        public int Bedrooms { get; set; }
+        [Required]
+        public int Bathrooms { get; set; }
+        public decimal? Price { get; set; }
+        public string Comments { get; set; }
+    }
+
+    public class LeasersInformationViewModel
+    {
+        public int Id { get; set; }
+        public int Bedrooms { get; set; }
+        public int Bathrooms { get; set; }
+        public decimal Price { get; set; }
+        public string Location { get; set; }
+        public string ContactInfo { get; set; }
+    }
+}

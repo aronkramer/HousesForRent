@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using HousesForRent.Properties;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -21,7 +22,7 @@ namespace HousesForRent.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base(Settings.Default.RentersConStr, throwIfV1Schema: false)
         {
         }
 
@@ -29,5 +30,15 @@ namespace HousesForRent.Models
         {
             return new ApplicationDbContext();
         }
+
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    base.OnModelCreating(modelBuilder);
+
+        //    modelBuilder.Entity<IdentityUser>().ToTable("Users");
+        //    modelBuilder.Entity<ApplicationUser>().ToTable("Users");
+        //}
+
+        public DbSet<LeasersInformation> LeasersInformations { get; set; }
     }
 }
