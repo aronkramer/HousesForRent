@@ -18,7 +18,7 @@ namespace HousesForRent.Models
         [Required]
         public int Bedrooms { get; set; }
         [Required]
-        public int Bathrooms { get; set; }
+        public decimal Bathrooms { get; set; }
         public decimal? Price { get; set; }
         public string Comments { get; set; }
     }
@@ -27,9 +27,10 @@ namespace HousesForRent.Models
     {
         public int Id { get; set; }
         public int Bedrooms { get; set; }
-        public int Bathrooms { get; set; }
+        public decimal Bathrooms { get; set; }
         public decimal Price { get; set; }
         public string Location { get; set; }
         public string ContactInfo { get; set; }
+        public string Comments { get; set; }
     }
 }

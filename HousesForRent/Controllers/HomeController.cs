@@ -10,6 +10,7 @@ namespace HousesForRent.Controllers
     {
         public ActionResult Index()
         {
+            //test is working
             return View();
         }
     }

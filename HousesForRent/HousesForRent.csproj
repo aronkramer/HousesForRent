@@ -169,10 +169,14 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LeaserController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DataBase\LeaserRepository.cs" />
+    <Compile Include="DataBase\Repository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Helpers.cs" />
     <Compile Include="Migrations\201910311658293_Initial.cs" />
     <Compile Include="Migrations\201910311658293_Initial.Designer.cs">
       <DependentUpon>201910311658293_Initial.cs</DependentUpon>
@@ -188,6 +192,10 @@
     <Compile Include="Migrations\201911041500195_priceNull.cs" />
     <Compile Include="Migrations\201911041500195_priceNull.Designer.cs">
       <DependentUpon>201911041500195_priceNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911140037349_bathroomDecimal.cs" />
+    <Compile Include="Migrations\201911140037349_bathroomDecimal.Designer.cs">
+      <DependentUpon>201911140037349_bathroomDecimal.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -228,6 +236,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\vue-folder\addHouse-vue.js" />
+    <Content Include="Scripts\vue-folder\editHouse-vue.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -260,6 +270,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Leaser\AddHouse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -289,6 +300,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911041500195_priceNull.resx">
       <DependentUpon>201911041500195_priceNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911140037349_bathroomDecimal.resx">
+      <DependentUpon>201911140037349_bathroomDecimal.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
