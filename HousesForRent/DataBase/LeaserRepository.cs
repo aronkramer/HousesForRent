@@ -10,5 +10,16 @@ namespace HousesForRent.DataBase
     {
         private ApplicationDbContext context = new ApplicationDbContext();
 
+        public string GetUserId(string email)
+        {
+            return context.Users.FirstOrDefault(e => e.Email == email).Id;
+        }
+
+        public void AddDays(Timer timer)
+        {
+            context.Timers.Add(timer);
+        }
+        
+
     }
 }

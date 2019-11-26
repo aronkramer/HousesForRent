@@ -22,7 +22,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("leas", "addhouse", "leaser")</li>
+                    <li>@Html.ActionLink("lease", "addhouse", "leaser")</li>
+                    <li>@Html.ActionLink("view homes", "ViewAll", "Tenant")</li>
+
+                    
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

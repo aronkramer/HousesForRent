@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "ViewAll";
+}
+
+<div id="tenant">
+
+    <table class="table table-bordered">
+        <tr>
+            <th>contact info</th>
+            <th>bedrooms</th>
+            <th>bathrooms</th>
+            <th>price</th>
+            <th>comments</th>
+        </tr>
+        <tr v-for="x in rentals">
+            <td>{{x.ContactInfo}}</td>
+            <td>{{x.Bedrooms}}</td>
+            <td>{{x.Bathrooms}}</td>
+            <td>{{x.Price}}</td>
+            <td>{{x.Comments}}</td>
+        </tr>
+    </table>
+
+</div>
+
+@section scripts{
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/vue-folder/viewRentals-vue.js"></script>
+}

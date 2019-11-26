@@ -21,22 +21,23 @@ namespace HousesForRent.Controllers
         public void AddRental(LeasersInformationViewModel infoVM)
         {
             var repo = new LeaserRepository();
+            infoVM.UserId = repo.GetUserId(User.Identity.Name);
             var info = infoVM.ToViewModelSingle<LeasersInformationViewModel, LeasersInformation>();
             repo.Add(info);
             repo.SaveChanges();
         }
 
+        [HttpPost]
+        public void AddTime(int tim)
+        {
+            var repo = new LeaserRepository();
 
-        //test
-        //public void Getter(int id)
-        //{
-        //    var repo = new LeaserRepository();
-        //    var x = repo.get(id).ToViewModelSingle<LeasersInformation, LeasersInformationViewModel>();
-        //    var qw = repo.get(id);
-
-        //    var allon = repo.getall().ToViewModel<LeasersInformation, LeasersInformationViewModel>();
-        //    var allof = repo.getall();
-
-        //}
+            var v = new TimerViewModel
+            {
+                UserId = repo.GetUserId(User.Identity.Name),
+                Days = tim,
+            }.ToViewModelSingle<TimerViewModel, Timer>();
+            repo.AddDays(v);
+        }
     }
 }

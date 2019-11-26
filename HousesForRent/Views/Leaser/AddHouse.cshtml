@@ -3,8 +3,9 @@
     ViewBag.Title = "AddHouse";
 }
 <div id="landlord">
-    <div class="well col-md-5 col-md-offset-4">
+    <div class="well col-md-3 col-md-offset-2">
         <center>
+            <h3 style="background-color:aqua">Listing</h3>
             <input class="form-control" v-model="listingsInfo.ContactInfo" placeholder="contactinfo" /><br />
 
             <input class="form-control" v-model="listingsInfo.Bedrooms" placeholder="bedrooms" /><br />
@@ -15,11 +16,29 @@
 
             <input class="form-control" v-model="listingsInfo.Comments" placeholder="comments" /><br />
 
-            <button v-on:click="addRental()" class="btn btn-primary">submit</button>
+            <button v-on:click="addRental()" class="btn btn-primary">Register listing</button>
         </center>
     </div>
 
+    <div class="well col-md-3 col-md-offset-2">
+
+        <center>
+            <h3 style="background-color:aqua">Timer</h3>
+            <input class="form-control" v-model="Days" placeholder="Days" /><br />
+            <button v-on:click="addTime()" class="btn btn-primary">Add</button>
+        </center>
+        <hr />
+        <ul style="padding-left:15px">
+            <li>1 day: $2</li>
+            <li>1 week: $10</li>
+            <li>additional days above a week: $1.40</li>
+        </ul>
+
+    </div>
 </div>
+
+    
+
 
 @section scripts{
     <script src="~/Scripts/vue.js"></script>

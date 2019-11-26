@@ -171,7 +171,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LeaserController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\TenantController.cs" />
     <Compile Include="DataBase\LeaserRepository.cs" />
+    <Compile Include="DataBase\RenterRepository.cs" />
     <Compile Include="DataBase\Repository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -197,11 +199,24 @@
     <Compile Include="Migrations\201911140037349_bathroomDecimal.Designer.cs">
       <DependentUpon>201911140037349_bathroomDecimal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911171954046_foreignkey.cs" />
+    <Compile Include="Migrations\201911171954046_foreignkey.Designer.cs">
+      <DependentUpon>201911171954046_foreignkey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911200208421_UserIdRequired.cs" />
+    <Compile Include="Migrations\201911200208421_UserIdRequired.Designer.cs">
+      <DependentUpon>201911200208421_UserIdRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911252302525_Timer.cs" />
+    <Compile Include="Migrations\201911252302525_Timer.Designer.cs">
+      <DependentUpon>201911252302525_Timer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LeasersInfoViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\TimerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -238,6 +253,7 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\vue-folder\addHouse-vue.js" />
     <Content Include="Scripts\vue-folder\editHouse-vue.js" />
+    <Content Include="Scripts\vue-folder\viewRentals-vue.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -271,6 +287,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Leaser\AddHouse.cshtml" />
+    <Content Include="Views\Tenant\ViewAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -303,6 +320,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911140037349_bathroomDecimal.resx">
       <DependentUpon>201911140037349_bathroomDecimal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911171954046_foreignkey.resx">
+      <DependentUpon>201911171954046_foreignkey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911200208421_UserIdRequired.resx">
+      <DependentUpon>201911200208421_UserIdRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911252302525_Timer.resx">
+      <DependentUpon>201911252302525_Timer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
