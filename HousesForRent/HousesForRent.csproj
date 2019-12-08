@@ -211,12 +211,19 @@
     <Compile Include="Migrations\201911252302525_Timer.Designer.cs">
       <DependentUpon>201911252302525_Timer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912080222547_moveTimer.cs" />
+    <Compile Include="Migrations\201912080222547_moveTimer.Designer.cs">
+      <DependentUpon>201912080222547_moveTimer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912080225190_nullDate.cs" />
+    <Compile Include="Migrations\201912080225190_nullDate.Designer.cs">
+      <DependentUpon>201912080225190_nullDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LeasersInfoViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\TimerViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -251,9 +258,14 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\vue-folder\addHouse-vue.js" />
     <Content Include="Scripts\vue-folder\editHouse-vue.js" />
     <Content Include="Scripts\vue-folder\viewRentals-vue.js" />
+    <Content Include="Scripts\vue.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -288,6 +300,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Leaser\AddHouse.cshtml" />
     <Content Include="Views\Tenant\ViewAll.cshtml" />
+    <Content Include="Views\Leaser\UsersListings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -329,6 +342,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911252302525_Timer.resx">
       <DependentUpon>201911252302525_Timer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912080222547_moveTimer.resx">
+      <DependentUpon>201912080222547_moveTimer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912080225190_nullDate.resx">
+      <DependentUpon>201912080225190_nullDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

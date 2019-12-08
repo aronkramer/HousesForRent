@@ -3,38 +3,31 @@
     ViewBag.Title = "AddHouse";
 }
 <div id="landlord">
-    <div class="well col-md-3 col-md-offset-2">
+    <div class="well col-md-5 col-md-offset-3">
         <center>
-            <h3 style="background-color:aqua">Listing</h3>
-            <input class="form-control" v-model="listingsInfo.ContactInfo" placeholder="contactinfo" /><br />
+            <h3 style="background-color:aqua">Add New Listing</h3>
+            <label>Phone Number or Email</label>
+            <input class="form-control" v-model="listingsInfo.ContactInfo" placeholder="Contactinfo" />
 
-            <input class="form-control" v-model="listingsInfo.Bedrooms" placeholder="bedrooms" /><br />
+            <label>Amount of Bedrooms</label>
+            <input class="form-control" v-model="listingsInfo.Bedrooms" placeholder="Bedrooms" />
 
-            <input class="form-control" v-model="listingsInfo.Bathrooms" placeholder="bathrooms" /><br />
+            <label>Amount of Bathrooms (.5 for half)</label>
+            <input class="form-control" v-model="listingsInfo.Bathrooms" placeholder="Bathrooms" />
 
-            <input class="form-control" v-model="listingsInfo.Price" placeholder="price" /><br />
+            <label>Price</label>
+            <input class="form-control" v-model="listingsInfo.Price" placeholder="Price" />
 
-            <input class="form-control" v-model="listingsInfo.Comments" placeholder="comments" /><br />
+            <label>Comments</label>
+            <input class="form-control" v-model="listingsInfo.Comments" placeholder="Comments" />
+
+            <label>Expiration Date ($0.50 per day. minimum 1 week)</label>
+            <input class="form-control" v-model="listingsInfo.Date" type="date"/><br />
 
             <button v-on:click="addRental()" class="btn btn-primary">Register listing</button>
         </center>
     </div>
 
-    <div class="well col-md-3 col-md-offset-2">
-
-        <center>
-            <h3 style="background-color:aqua">Timer</h3>
-            <input class="form-control" v-model="Days" placeholder="Days" /><br />
-            <button v-on:click="addTime()" class="btn btn-primary">Add</button>
-        </center>
-        <hr />
-        <ul style="padding-left:15px">
-            <li>1 day: $2</li>
-            <li>1 week: $10</li>
-            <li>additional days above a week: $1.40</li>
-        </ul>
-
-    </div>
 </div>
 
     

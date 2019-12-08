@@ -1,4 +1,5 @@
-﻿using HousesForRent.Models;
+﻿using HousesForRent.Helpers;
+using HousesForRent.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,11 @@ namespace HousesForRent.DataBase
         {
             return context.Users.FirstOrDefault(e => e.Email == email).Id;
         }
-
-        public void AddDays(Timer timer)
+                       
+        public List<LeasersInformationViewModel> GetListingsById(string UserId)
         {
-            context.Timers.Add(timer);
+            return context.LeasersInformations.Where(x => x.UserId == UserId)
+                .ToList().ToViewModel<LeasersInformation, LeasersInformationViewModel>().ToList();
         }
-        
-
     }
 }

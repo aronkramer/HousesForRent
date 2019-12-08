@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "UsersListings";
+}
+
+<h2>UsersListings</h2>
+<h2>hello @User.Identity.Name</h2>
+
+<div id="landlord">
+    
+    <table class="table table-bordered">
+        <tr>
+            <th>bedrooms</th>
+            <th>bathrooms</th>
+            <th>comments</th>
+            <th>contact info</th>
+            <th>Price</th>
+            <th>date</th>
+        </tr>
+        <tr v-for="x in listings">
+            <td>{{x.Bedrooms}}</td>
+            <td>{{x.Bathrooms}}</td>
+            <td>{{x.Comments}}</td>
+            <td>{{x.ContactInfo}}</td>
+            <td>{{x.Price}}</td>
+            <td>{{x.Date | toShortDateString}}</td>
+        </tr>
+    </table>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/vue-folder/addHouse-vue.js"></script>
+}

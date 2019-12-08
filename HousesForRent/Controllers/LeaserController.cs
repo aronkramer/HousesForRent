@@ -11,10 +11,16 @@ namespace HousesForRent.Controllers
 {
     public class LeaserController : Controller
     {
-        // GET: Leaser
+        // PAGES
         public ActionResult AddHouse()
         {
             return View();
+        }
+
+        public ActionResult UsersListings()
+        {
+            var v = GetUsersListings();
+            return View(v);
         }
 
         [HttpPost]
@@ -27,17 +33,12 @@ namespace HousesForRent.Controllers
             repo.SaveChanges();
         }
 
-        [HttpPost]
-        public void AddTime(int tim)
+        public ActionResult GetUsersListings()
         {
             var repo = new LeaserRepository();
-
-            var v = new TimerViewModel
-            {
-                UserId = repo.GetUserId(User.Identity.Name),
-                Days = tim,
-            }.ToViewModelSingle<TimerViewModel, Timer>();
-            repo.AddDays(v);
+            var Id = repo.GetUserId(User.Identity.Name);
+            var listings = repo.GetListingsById(Id);
+            return Json(listings, JsonRequestBehavior.AllowGet);
         }
     }
 }

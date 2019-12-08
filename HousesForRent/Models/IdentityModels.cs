@@ -40,6 +40,5 @@ namespace HousesForRent.Models
         //}
 
         public DbSet<LeasersInformation> LeasersInformations { get; set; }
-        public DbSet<Timer> Timers { get; set; }
     }
 }

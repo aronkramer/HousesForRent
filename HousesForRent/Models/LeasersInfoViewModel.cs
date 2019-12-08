@@ -25,6 +25,7 @@ namespace HousesForRent.Models
         public decimal Bathrooms { get; set; }
         public decimal? Price { get; set; }
         public string Comments { get; set; }
+        public DateTime? Date { get; set; }
     }
 
     public class LeasersInformationViewModel
@@ -37,5 +38,6 @@ namespace HousesForRent.Models
         public string Location { get; set; }
         public string ContactInfo { get; set; }
         public string Comments { get; set; }
+        public DateTime? Date { get; set; }
     }
 }
