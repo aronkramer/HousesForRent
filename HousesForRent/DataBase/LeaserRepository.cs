@@ -21,5 +21,15 @@ namespace HousesForRent.DataBase
             return context.LeasersInformations.Where(x => x.UserId == UserId)
                 .ToList().ToViewModel<LeasersInformation, LeasersInformationViewModel>().ToList();
         }
+
+        public List<string> GetAllLocations()
+        {
+            return context.Locations.Select(x => x.Country).Distinct().ToList();
+        }
+
+        public List<string> GetAllStates(string country)
+        {
+            return context.Locations.Where(z => z.Country == country).Select(x => x.State).Distinct().ToList();
+        }
     }
 }

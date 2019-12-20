@@ -1,9 +1,12 @@
 ﻿new Vue({
     el: '#landlord',
     mounted: function () {
-        var v = window.location.toString();
-        if (v.includes("UsersListings")) {
+        var url = window.location.toString();
+        if (url.includes("UsersListings")) {
             this.usersListings()
+        }
+        if (url.includes("addhouse")) {
+            this.getLocations();
         }
     },
     data: {
@@ -14,9 +17,15 @@
             Price:       '',
             Comments:    '',
             Date:        '',
+            Furnished:   ''
         },
         listings: null,
-       
+        countryLocations: [],
+        countryLocation: '',
+
+        stateLocations: [],
+        stateLocation: [],
+        getState:'',
         
     },
     methods: {
@@ -27,16 +36,44 @@
         },
         usersListings: function () {
             $.get("/Leaser/GetUsersListings", result => {
-               
-                console.log(result);
                 this.listings = result;
             });
+        },
+        getLocations: function () {
+            $.get("/Leaser/GetLocations", result => {
+                this.countryLocations = result;
+            });
+        },
+        tester: function () {
+            $("input[list=country]").focusout(function () {
+                $.get("/Leaser/GetStates", { country: $(this).val() }, result => {
+                    $("input[list=state]").append(result);
+                    //this.stateLocations = result;
+                    console.log(result);
+                });
+            });
+        },
+        makeEditable: function (item) {
+            if (!item.Edit) {
+                item.Edit = !item.Edit;
+                //item.Copy = jQuery.extend(true, {}, item);
+            }
+
+            else {
+                this.cancel(item);
+            }
         }
     },
     filters: {
         toShortDateString: function (value) {
             if (value) {
                 return moment(value).format('L');
+            }
+            return null;
+        },
+        isFurnished: function (value) {
+            if (value) {
+                return '✓';
             }
             return null;
         }

@@ -3,19 +3,21 @@
     ViewBag.Title = "UsersListings";
 }
 
-<h2>UsersListings</h2>
-<h2>hello @User.Identity.Name</h2>
+<h4>@User.Identity.Name</h4>
 
 <div id="landlord">
-    
-    <table class="table table-bordered">
+
+    <table class="table table-bordered table-striped">
         <tr>
             <th>bedrooms</th>
             <th>bathrooms</th>
             <th>comments</th>
             <th>contact info</th>
             <th>Price</th>
-            <th>date</th>
+            <th>Date</th>
+            <th>Is Furnished</th>
+            <th>test price</th>
+            <th>Actions</th>
         </tr>
         <tr v-for="x in listings">
             <td>{{x.Bedrooms}}</td>
@@ -24,6 +26,16 @@
             <td>{{x.ContactInfo}}</td>
             <td>{{x.Price}}</td>
             <td>{{x.Date | toShortDateString}}</td>
+            <td>{{x.Furnished | isFurnished}}</td>
+
+            <td v-if="!x.Edit" v-on:dblclick="makeEditable(x)">
+                <span>{{x.Price}}</span>
+            </td>
+            <td v-else @*v-on:dblclick="cancel(x)"*@>
+                <input v-model="x.Price" />
+            </td>
+
+            <td><button class="btn btn-primary">save</button></td>
         </tr>
     </table>
 </div>

@@ -37,8 +37,19 @@ namespace HousesForRent.Controllers
         {
             var repo = new LeaserRepository();
             var Id = repo.GetUserId(User.Identity.Name);
-            var listings = repo.GetListingsById(Id);
-            return Json(listings, JsonRequestBehavior.AllowGet);
+            return Json(repo.GetListingsById(Id), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetLocations()
+        {
+            var repo = new LeaserRepository();
+            return Json(repo.GetAllLocations(), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetStates(string country)
+        {
+            var repo = new LeaserRepository();
+            return Json(repo.GetAllStates(country), JsonRequestBehavior.AllowGet);
         }
     }
 }

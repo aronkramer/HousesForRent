@@ -3,6 +3,18 @@
     ViewBag.Title = "AddHouse";
 }
 <div id="landlord">
+
+    <datalist id="country">
+        <option v-for="countryLocation in countryLocations">{{countryLocation}}</option>
+    </datalist>
+
+    <datalist id="state">
+        <option>help me</option>
+        <option v-for="stateLocation in stateLocations">{{stateLocation}}</option>
+    </datalist>
+
+
+
     <div class="well col-md-5 col-md-offset-3">
         <center>
             <h3 style="background-color:aqua">Add New Listing</h3>
@@ -18,11 +30,20 @@
             <label>Price</label>
             <input class="form-control" v-model="listingsInfo.Price" placeholder="Price" />
 
+            <label>Country</label>
+            <input class="form-control" list="country" v-on:blur="tester()" placeholder="Country" />
+
+            <label>state</label>
+            <input class="form-control" list="state" placeholder="State" />
+
             <label>Comments</label>
             <input class="form-control" v-model="listingsInfo.Comments" placeholder="Comments" />
 
             <label>Expiration Date ($0.50 per day. minimum 1 week)</label>
-            <input class="form-control" v-model="listingsInfo.Date" type="date"/><br />
+            <input class="form-control" v-model="listingsInfo.Date" type="date" />
+
+            <label>Furnished</label>
+            <input type="checkbox" v-model="listingsInfo.Furnished" /><br />
 
             <button v-on:click="addRental()" class="btn btn-primary">Register listing</button>
         </center>
