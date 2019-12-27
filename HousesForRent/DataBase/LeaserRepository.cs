@@ -22,14 +22,10 @@ namespace HousesForRent.DataBase
                 .ToList().ToViewModel<LeasersInformation, LeasersInformationViewModel>().ToList();
         }
 
-        public List<string> GetAllLocations()
+        public List<LocationViewModel> GetAllLocations()
         {
-            return context.Locations.Select(x => x.Country).Distinct().ToList();
+            return context.Locations.ToViewModel<Location, LocationViewModel>().ToList();
         }
 
-        public List<string> GetAllStates(string country)
-        {
-            return context.Locations.Where(z => z.Country == country).Select(x => x.State).Distinct().ToList();
-        }
     }
 }

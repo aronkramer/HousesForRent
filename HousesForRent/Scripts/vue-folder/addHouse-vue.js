@@ -44,15 +44,6 @@
                 this.countryLocations = result;
             });
         },
-        tester: function () {
-            $("input[list=country]").focusout(function () {
-                $.get("/Leaser/GetStates", { country: $(this).val() }, result => {
-                    $("input[list=state]").append(result);
-                    //this.stateLocations = result;
-                    console.log(result);
-                });
-            });
-        },
         makeEditable: function (item) {
             if (!item.Edit) {
                 item.Edit = !item.Edit;

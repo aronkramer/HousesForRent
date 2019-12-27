@@ -46,10 +46,5 @@ namespace HousesForRent.Controllers
             return Json(repo.GetAllLocations(), JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult GetStates(string country)
-        {
-            var repo = new LeaserRepository();
-            return Json(repo.GetAllStates(country), JsonRequestBehavior.AllowGet);
-        }
     }
 }

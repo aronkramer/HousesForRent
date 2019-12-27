@@ -5,15 +5,10 @@
 <div id="landlord">
 
     <datalist id="country">
-        <option v-for="countryLocation in countryLocations">{{countryLocation}}</option>
+        <option v-for="countryLocation in countryLocations">
+        {{countryLocation.City}} {{countryLocation.State}}  ({{countryLocation.Country}})
+        </option>
     </datalist>
-
-    <datalist id="state">
-        <option>help me</option>
-        <option v-for="stateLocation in stateLocations">{{stateLocation}}</option>
-    </datalist>
-
-
 
     <div class="well col-md-5 col-md-offset-3">
         <center>
@@ -31,10 +26,7 @@
             <input class="form-control" v-model="listingsInfo.Price" placeholder="Price" />
 
             <label>Country</label>
-            <input class="form-control" list="country" v-on:blur="tester()" placeholder="Country" />
-
-            <label>state</label>
-            <input class="form-control" list="state" placeholder="State" />
+            <input class="form-control" list="country" placeholder="Country" />
 
             <label>Comments</label>
             <input class="form-control" v-model="listingsInfo.Comments" placeholder="Comments" />
