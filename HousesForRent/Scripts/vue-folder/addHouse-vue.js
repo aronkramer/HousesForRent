@@ -1,4 +1,4 @@
-﻿new Vue({
+﻿var vm = new Vue({
     el: '#landlord',
     mounted: function () {
         var url = window.location.toString();
@@ -17,15 +17,16 @@
             Price:       '',
             Comments:    '',
             Date:        '',
-            Furnished:   ''
+            Furnished: '',
+            LocationId: ''
         },
         listings: null,
         countryLocations: [],
         countryLocation: '',
-
         stateLocations: [],
         stateLocation: [],
         getState:'',
+        country: ''
         
     },
     methods: {
@@ -43,6 +44,15 @@
             $.get("/Leaser/GetLocations", result => {
                 this.countryLocations = result;
             });
+        },
+        getcountryId: function () {
+            $("input[name=country]").focusout(function () {
+                alert($(this).val());
+            });
+        },
+        getLocationIdForInput: function () {
+            var test = $('#country').val();
+            console.log(test);
         },
         makeEditable: function (item) {
             if (!item.Edit) {

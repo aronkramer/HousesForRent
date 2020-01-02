@@ -27,7 +27,9 @@ namespace HousesForRent.Models
         public string Comments { get; set; }
         public DateTime? Date { get; set; }
         public bool Furnished { get; set; }
-        public int LocationId { get; set; }
+        [Required]
+        [Column("LocationId")]
+        public virtual Location Location { get; set; }
     }
 
     public class LeasersInformationViewModel
@@ -36,12 +38,13 @@ namespace HousesForRent.Models
         public string UserId { get; set; }
         public int Bedrooms { get; set; }
         public decimal Bathrooms { get; set; }
-        public decimal Price { get; set; }
-        public string Location { get; set; }
+        public decimal? Price { get; set; }
+        //public string Location { get; set; }
         public string ContactInfo { get; set; }
         public string Comments { get; set; }
         public DateTime? Date { get; set; }
         public bool Furnished { get; set; }
         public int LocationId { get; set; }
+        public Location Location { get; set; }
     }
 }

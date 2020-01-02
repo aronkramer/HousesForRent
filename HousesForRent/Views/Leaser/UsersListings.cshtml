@@ -17,6 +17,7 @@
             <th>Date</th>
             <th>Is Furnished</th>
             <th>test price</th>
+            <th>location</th>
             <th>Actions</th>
         </tr>
         <tr v-for="x in listings">
@@ -27,7 +28,7 @@
             <td>{{x.Price}}</td>
             <td>{{x.Date | toShortDateString}}</td>
             <td>{{x.Furnished | isFurnished}}</td>
-
+            <td>{{x.Location}}</td>
             <td v-if="!x.Edit" v-on:dblclick="makeEditable(x)">
                 <span>{{x.Price}}</span>
             </td>

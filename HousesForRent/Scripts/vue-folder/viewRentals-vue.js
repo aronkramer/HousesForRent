@@ -1,7 +1,7 @@
 ﻿new Vue({
     el: '#tenant',
     mounted: function () {
-        this.allRentals();
+        //this.allRentals();
     },
     data: {
         rentals: [],

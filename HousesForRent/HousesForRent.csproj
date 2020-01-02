@@ -234,9 +234,13 @@
     <Compile Include="Migrations\201912192338477_locationfixed.designer.cs">
       <DependentUpon>201912192338477_locationfixed.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201912200008315_leaserlocaton.cs" />
-    <Compile Include="Migrations\201912200008315_leaserlocaton.designer.cs">
-      <DependentUpon>201912200008315_leaserlocaton.cs</DependentUpon>
+    <Compile Include="Migrations\202001011554251_locationId001.cs" />
+    <Compile Include="Migrations\202001011554251_locationId001.designer.cs">
+      <DependentUpon>202001011554251_locationId001.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001011555300_locationId002.cs" />
+    <Compile Include="Migrations\202001011555300_locationId002.designer.cs">
+      <DependentUpon>202001011555300_locationId002.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -378,8 +382,11 @@
     <EmbeddedResource Include="Migrations\201912192338477_locationfixed.resx">
       <DependentUpon>201912192338477_locationfixed.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201912200008315_leaserlocaton.resx">
-      <DependentUpon>201912200008315_leaserlocaton.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001011554251_locationId001.resx">
+      <DependentUpon>202001011554251_locationId001.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001011555300_locationId002.resx">
+      <DependentUpon>202001011555300_locationId002.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
