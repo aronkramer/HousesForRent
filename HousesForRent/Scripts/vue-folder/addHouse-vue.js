@@ -20,18 +20,24 @@
             Furnished: '',
             LocationId: ''
         },
+        location: {
+            City: '',
+            State: '',
+            Country: ''
+        },
         listings: null,
         countryLocations: [],
         countryLocation: '',
-        stateLocations: [],
-        stateLocation: [],
         getState:'',
-        country: ''
-        
+        country: '',
+        theLocationId: ''
     },
     methods: {
         addRental: function () {
-            $.post("/Leaser/AddRental", this.listingsInfo);
+            var locationId = this.theLocationId;
+            var info = this.listingsInfo;
+            info.LocationId = locationId;
+            $.post("/Leaser/AddRental", info);
             alert('Listing has been added successfully');
             window.location.href = "/Leaser/UsersListings";
         },
@@ -50,9 +56,18 @@
                 alert($(this).val());
             });
         },
-        getLocationIdForInput: function () {
-            var test = $('#country').val();
-            console.log(test);
+        getLocationIdOnInput: function () {
+            var locationName = $('#getLocationId').val();
+
+            var id = this.countryLocations;
+            var locationId = id.find(function (element) {
+                var city = element.City;
+                var state = element.State;
+                var country = element.Country;
+                var fulllocation = city + ' ' + state + ' ' + country;
+                return locationName === fulllocation;
+            }).Id;
+            this.theLocationId = locationId;
         },
         makeEditable: function (item) {
             if (!item.Edit) {

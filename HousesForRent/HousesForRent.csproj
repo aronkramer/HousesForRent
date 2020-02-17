@@ -238,9 +238,41 @@
     <Compile Include="Migrations\202001011554251_locationId001.designer.cs">
       <DependentUpon>202001011554251_locationId001.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001011555300_locationId002.cs" />
-    <Compile Include="Migrations\202001011555300_locationId002.designer.cs">
-      <DependentUpon>202001011555300_locationId002.cs</DependentUpon>
+    <Compile Include="Migrations\202001071221086_location104.cs" />
+    <Compile Include="Migrations\202001071221086_location104.designer.cs">
+      <DependentUpon>202001071221086_location104.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001071243288_location107.cs" />
+    <Compile Include="Migrations\202001071243288_location107.designer.cs">
+      <DependentUpon>202001071243288_location107.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001080356254_removeLeaserInfor.cs" />
+    <Compile Include="Migrations\202001080356254_removeLeaserInfor.designer.cs">
+      <DependentUpon>202001080356254_removeLeaserInfor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001080358373_leaserinformationBackOn.cs" />
+    <Compile Include="Migrations\202001080358373_leaserinformationBackOn.designer.cs">
+      <DependentUpon>202001080358373_leaserinformationBackOn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001132246043_addLocation.cs" />
+    <Compile Include="Migrations\202001132246043_addLocation.designer.cs">
+      <DependentUpon>202001132246043_addLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001132248505_addLocation002.cs" />
+    <Compile Include="Migrations\202001132248505_addLocation002.designer.cs">
+      <DependentUpon>202001132248505_addLocation002.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001141256581_location003.cs" />
+    <Compile Include="Migrations\202001141256581_location003.designer.cs">
+      <DependentUpon>202001141256581_location003.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001141305316_location004.cs" />
+    <Compile Include="Migrations\202001141305316_location004.designer.cs">
+      <DependentUpon>202001141305316_location004.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001141318044_location005.cs" />
+    <Compile Include="Migrations\202001141318044_location005.designer.cs">
+      <DependentUpon>202001141318044_location005.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -385,8 +417,32 @@
     <EmbeddedResource Include="Migrations\202001011554251_locationId001.resx">
       <DependentUpon>202001011554251_locationId001.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202001011555300_locationId002.resx">
-      <DependentUpon>202001011555300_locationId002.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001071221086_location104.resx">
+      <DependentUpon>202001071221086_location104.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001071243288_location107.resx">
+      <DependentUpon>202001071243288_location107.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001080356254_removeLeaserInfor.resx">
+      <DependentUpon>202001080356254_removeLeaserInfor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001080358373_leaserinformationBackOn.resx">
+      <DependentUpon>202001080358373_leaserinformationBackOn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001132246043_addLocation.resx">
+      <DependentUpon>202001132246043_addLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001132248505_addLocation002.resx">
+      <DependentUpon>202001132248505_addLocation002.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001141256581_location003.resx">
+      <DependentUpon>202001141256581_location003.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001141305316_location004.resx">
+      <DependentUpon>202001141305316_location004.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001141318044_location005.resx">
+      <DependentUpon>202001141318044_location005.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

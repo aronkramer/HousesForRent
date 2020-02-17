@@ -28,9 +28,9 @@ namespace HousesForRent.Controllers
         {
             var repo = new LeaserRepository();
             infoVM.UserId = repo.GetUserId(User.Identity.Name);
+            infoVM.Location = new Location {Id = infoVM.LocationId };
             var info = infoVM.ToViewModelSingle<LeasersInformationViewModel, LeasersInformation>();
-            repo.Add(info);
-            repo.SaveChanges();
+            repo.AddHouse(info);
         }
 
         public ActionResult GetUsersListings()
@@ -46,5 +46,10 @@ namespace HousesForRent.Controllers
             return Json(repo.GetAllLocations(), JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetLocationById(int Id)
+        {
+            var repo = new LeaserRepository();
+            return Json(repo.GetLocationById(Id), JsonRequestBehavior.AllowGet);
+        }
     }
 }

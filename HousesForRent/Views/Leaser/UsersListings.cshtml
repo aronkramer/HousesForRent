@@ -16,7 +16,6 @@
             <th>Price</th>
             <th>Date</th>
             <th>Is Furnished</th>
-            <th>test price</th>
             <th>location</th>
             <th>Actions</th>
         </tr>
@@ -28,13 +27,14 @@
             <td>{{x.Price}}</td>
             <td>{{x.Date | toShortDateString}}</td>
             <td>{{x.Furnished | isFurnished}}</td>
-            <td>{{x.Location}}</td>
-            <td v-if="!x.Edit" v-on:dblclick="makeEditable(x)">
-                <span>{{x.Price}}</span>
-            </td>
-            <td v-else @*v-on:dblclick="cancel(x)"*@>
-                <input v-model="x.Price" />
-            </td>
+            <td>{{x.Location.City}} {{x.Location.State}} ({{x.Location.Country}})</td>
+
+            @*<td v-if="!x.Edit" v-on:dblclick="makeEditable(x)">
+            <span>{{x.Price}}</span>
+        </td>
+        <td v-else v-on:dblclick="cancel(x)">
+            <input v-model="x.Price" />
+        </td>*@
 
             <td><button class="btn btn-primary">save</button></td>
         </tr>

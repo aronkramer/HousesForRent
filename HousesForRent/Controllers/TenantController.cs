@@ -19,7 +19,7 @@ namespace HousesForRent.Controllers
         public ActionResult AllRentals()
         {
             var repo = new RenterRepository();
-            var listOfHouses = repo.GetAll().ToViewModel<LeasersInformation, LeasersInformationViewModel>();
+            var listOfHouses = repo.GetAllRentals();
             return Json(listOfHouses, JsonRequestBehavior.AllowGet);
         }
     }

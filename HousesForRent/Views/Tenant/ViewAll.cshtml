@@ -5,13 +5,34 @@
 
 <div id="tenant">
 
-    <table class="table table-bordered">
+    <datalist id="locations">
+        <option v-for="city in cities">
+             {{city.City}} {{city.State}} {{city.Country}}
+        </option>
+    </datalist>
+
+    <div class="form-inline">
+        Starting date <input id="startingDate" v-on:change="filterDates()" class="form-control" type="date" />
+
+        <select class="form-control" id="temp" v-on:change="filterFurn();">
+            <option value="-1" hidden selected disabled>Select apartment type</option>
+            <option value="0">Furnished</option>
+            <option value="1">Non Furnished</option>
+        </select>
+
+        <input class="form-control" placeholder="location" list="locations" id="getLocationId" v-on:change="getLocationIdOnInput();" />
+        <button class="btn-link" v-on:click="allRentals();">refresh</button>
+    </div>
+    <table id="RentalTable" class="table table-bordered" style="width:1000px; margin-top:30px;">
         <tr>
             <th>contact info</th>
             <th>bedrooms</th>
             <th>bathrooms</th>
             <th>price</th>
             <th>comments</th>
+            <th>Rental Starts</th>
+            <th>Furnished</th>
+            <th>location</th>
         </tr>
         <tr v-for="x in rentals">
             <td>{{x.ContactInfo}}</td>
@@ -19,12 +40,16 @@
             <td>{{x.Bathrooms}}</td>
             <td>{{x.Price}}</td>
             <td>{{x.Comments}}</td>
+            <td>{{x.Date | toShortDateString}}</td>
+            <td>{{x.Furnished | isFurnished}}</td>
+            <td :data-locationid="x.Location.Id">{{x.Location.City}} {{x.Location.State}} {{x.Location.Country}}</td>
         </tr>
     </table>
 
 </div>
 
 @section scripts{
+    <script src="~/Scripts/moment.js"></script>
     <script src="~/Scripts/vue.js"></script>
     <script src="~/Scripts/vue-folder/viewRentals-vue.js"></script>
 }

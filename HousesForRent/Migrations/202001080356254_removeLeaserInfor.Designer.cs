@@ -7,13 +7,13 @@ namespace HousesForRent.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.0")]
-    public sealed partial class leaserlocaton : IMigrationMetadata
+    public sealed partial class removeLeaserInfor : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(leaserlocaton));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(removeLeaserInfor));
         
         string IMigrationMetadata.Id
         {
-            get { return "201912200008315_leaserlocaton"; }
+            get { return "202001080356254_removeLeaserInfor"; }
         }
         
         string IMigrationMetadata.Source

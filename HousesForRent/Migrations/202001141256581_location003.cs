@@ -3,16 +3,14 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class leaserlocaton : DbMigration
+    public partial class location003 : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.LeasersInformations", "LocationId", c => c.Int(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.LeasersInformations", "LocationId");
         }
     }
 }
