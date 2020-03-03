@@ -25,7 +25,8 @@ namespace HousesForRent.Models
         public decimal Bathrooms { get; set; }
         public decimal? Price { get; set; }
         public string Comments { get; set; }
-        public DateTime? Date { get; set; }
+        [Required]
+        public DateTime Date { get; set; }
         public bool Furnished { get; set; }
         public int LocationId { get; set; }
         [ForeignKey("LocationId")]

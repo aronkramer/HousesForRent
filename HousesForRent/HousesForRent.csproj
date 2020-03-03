@@ -274,6 +274,10 @@
     <Compile Include="Migrations\202001141318044_location005.designer.cs">
       <DependentUpon>202001141318044_location005.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002191311501_dateRequired.cs" />
+    <Compile Include="Migrations\202002191311501_dateRequired.designer.cs">
+      <DependentUpon>202002191311501_dateRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\LocationViewModel.cs" />
@@ -443,6 +447,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202001141318044_location005.resx">
       <DependentUpon>202001141318044_location005.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002191311501_dateRequired.resx">
+      <DependentUpon>202002191311501_dateRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

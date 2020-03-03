@@ -12,11 +12,13 @@
     },
     methods: {
         allRentals: function () {
-            document.getElementById("temp").value = -1;
-            document.getElementById("getLocationId").value = "";
             $.get("/Tenant/AllRentals", result => {
                 this.rentals = result;
             });
+        },
+        clearInputs: function () {
+            document.getElementById("temp").value = -1;
+            document.getElementById("getLocationId").value = "";
         },
         getLocations: function () {
             $.get("/Leaser/GetLocations", result => {
@@ -42,8 +44,14 @@
             this.rentals = locationsWithId;
         },
         filterDates: function () {
-            var d = $('#startingDate').val();
-            console.log(d);
+            var calendar = $('#startingDate').val();
+            console.log(calendar);
+            var start = this.rentals.filter(function (row) {
+                if (calendar < moment.parseZone(row.Date).format("YYYY-MM-DD")) {
+                    return row;
+                }
+            });
+            this.rentals = start;
         },
         filterFurn: function () {
             var checked = $('#temp').val();

@@ -34,12 +34,24 @@
     },
     methods: {
         addRental: function () {
-            var locationId = this.theLocationId;
-            var info = this.listingsInfo;
-            info.LocationId = locationId;
-            $.post("/Leaser/AddRental", info);
-            alert('Listing has been added successfully');
-            window.location.href = "/Leaser/UsersListings";
+            var cont = this.listingsInfo.ContactInfo;
+            var bed = this.listingsInfo.Bedrooms;
+            var bath = this.listingsInfo.Bathrooms;
+            var date = this.listingsInfo.Date;
+            var loc = this.listingsInfo.LocationId
+            if (cont && bed && bath && date && loc) {
+                var locationId = this.theLocationId;
+                var info = this.listingsInfo;
+                info.LocationId = locationId;
+                $.ajax({
+                    url: "/Leaser/AddRental",
+                    method: "POST", data: info
+                }).done(function (data) {
+                    console.log(data.newUrl);
+                    alert('Your listing has been submitted');
+                    window.location.replace(data.newUrl);
+                });
+            }
         },
         usersListings: function () {
             $.get("/Leaser/GetUsersListings", result => {

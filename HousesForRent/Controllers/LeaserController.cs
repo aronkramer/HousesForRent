@@ -24,13 +24,17 @@ namespace HousesForRent.Controllers
         }
 
         [HttpPost]
-        public void AddRental(LeasersInformationViewModel infoVM)
+        public ActionResult AddRental(LeasersInformationViewModel infoVM)
         {
             var repo = new LeaserRepository();
             infoVM.UserId = repo.GetUserId(User.Identity.Name);
             infoVM.Location = new Location {Id = infoVM.LocationId };
             var info = infoVM.ToViewModelSingle<LeasersInformationViewModel, LeasersInformation>();
             repo.AddHouse(info);
+            return Json(new
+            {
+                newUrl = Url.Action("UsersListings", "Leaser")
+            });
         }
 
         public ActionResult GetUsersListings()
