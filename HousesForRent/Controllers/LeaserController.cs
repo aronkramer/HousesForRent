@@ -55,5 +55,17 @@ namespace HousesForRent.Controllers
             var repo = new LeaserRepository();
             return Json(repo.GetLocationById(Id), JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public void Update(LeasersInformationViewModel listing)
+        {
+            var repo = new LeaserRepository();
+            listing.UserId = repo.GetUserId(User.Identity.Name);
+            listing.Location = new Location { Id = listing.LocationId };
+            var hello = listing;
+            var info = listing.ToViewModelSingle<LeasersInformationViewModel, LeasersInformation>();
+            repo.Update(info);
+            repo.SaveChanges();
+        }
     }
 }

@@ -7,6 +7,12 @@
 
 <div id="landlord">
 
+    <datalist id="country">
+        <option v-for="countryLocation in countryLocations">
+            {{countryLocation.BaseObj.City}} {{countryLocation.BaseObj.State}} {{countryLocation.BaseObj.Country}}
+        </option>
+    </datalist>
+
     <table class="table table-bordered table-striped">
         <tr>
             <th>bedrooms</th>
@@ -19,24 +25,74 @@
             <th>location</th>
             <th>Actions</th>
         </tr>
-        <tr v-for="x in listings">
-            <td>{{x.Bedrooms}}</td>
-            <td>{{x.Bathrooms}}</td>
-            <td>{{x.Comments}}</td>
-            <td>{{x.ContactInfo}}</td>
-            <td>{{x.Price}}</td>
-            <td>{{x.Date | toShortDateString}}</td>
-            <td>{{x.Furnished | isFurnished}}</td>
-            <td>{{x.Location.City}} {{x.Location.State}} ({{x.Location.Country}})</td>
+        <tr v-for="(x, index) in listings">
 
-            @*<td v-if="!x.Edit" v-on:dblclick="makeEditable(x)">
-            <span>{{x.Price}}</span>
-        </td>
-        <td v-else v-on:dblclick="cancel(x)">
-            <input v-model="x.Price" />
-        </td>*@
+            @*bedrooms*@
+            <td v-if="!x.Edit" @*v-on:dblclick="makeEditable(x)"*@>
+                <span>{{x.BaseObj.Bedrooms}}</span>
+            </td>
+            <td v-else @*v-on:dblclick="cancel(x)"*@>
+                <input v-model="x.BaseObj.Bedrooms" style="background-color:cornsilk" size="1" />
+            </td>
 
-            <td><button class="btn btn-primary">save</button></td>
+            @*bathrooms*@
+            <td v-if="!x.Edit">
+                <span>{{x.BaseObj.Bathrooms}}</span>
+            </td>
+            <td v-else>
+                <input v-model="x.BaseObj.Bathrooms" style="background-color:cornsilk" size="1" />
+            </td>
+
+            @*Comments*@
+            <td v-if="!x.Edit">
+                <span>{{x.BaseObj.Comments}}</span>
+            </td>
+            <td v-else>
+                <input v-model="x.BaseObj.Comments" style="background-color:cornsilk" />
+            </td>
+
+            @*ContactInfo*@
+            <td v-if="!x.Edit">
+                <span>{{x.BaseObj.ContactInfo}}</span>
+            </td>
+            <td v-else>
+                <input v-model="x.BaseObj.ContactInfo" style="background-color:cornsilk"  />
+            </td>
+
+            @*price*@
+            <td v-if="!x.Edit">
+                <span>{{x.BaseObj.Price}}</span>
+            </td>
+            <td v-else>
+                <input v-model="x.BaseObj.Price" style="background-color:cornsilk" size="1" />
+            </td>
+
+            @*Date*@
+            <td v-if="!x.Edit">
+                <span>{{x.BaseObj.Date | toShortDateString}}</span>
+            </td>
+            <td v-else>
+                <input type="date" v-model="x.BaseObj.Date" style="background-color:cornsilk" size="1" />
+            </td>
+
+            @*Furnished*@
+            <td v-if="!x.Edit">
+                <span>{{x.BaseObj.Furnished | isFurnished}}</span>
+            </td>
+            <td v-else>
+                <input type="checkbox" v-model="x.BaseObj.Furnished" size="3" />
+            </td>
+
+
+            @*location*@
+            <td>{{x.BaseObj.Location.City}} {{x.BaseObj.Location.State}} ({{x.BaseObj.Location.Country}})</td>
+            
+            <td v-if="!x.Edit"><button class="btn btn-primary" v-on:click="makeEditable(x)">Edit</button></td>
+            <td v-else>
+                <button class="btn btn-xs btn-success" v-on:click="updateListing(index);">Update</button>
+                <br /><br />
+                <button class="btn btn-xs btn-warning" v-on:click="cancel(x)">Cancel</button>
+            </td>
         </tr>
     </table>
 </div>

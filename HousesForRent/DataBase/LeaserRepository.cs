@@ -50,7 +50,11 @@ namespace HousesForRent.DataBase
             context.SaveChanges();
         }
 
-        
+        public void Update(LeasersInformation info)
+        {
+            context.Entry(info).State = EntityState.Modified;
+            context.SaveChanges();
+        }
 
     }
 }

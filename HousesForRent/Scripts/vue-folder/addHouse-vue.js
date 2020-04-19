@@ -30,7 +30,8 @@
         countryLocation: '',
         getState:'',
         country: '',
-        theLocationId: ''
+        theLocationId: '',
+        Edit: false
     },
     methods: {
         addRental: function () {
@@ -55,7 +56,13 @@
         },
         usersListings: function () {
             $.get("/Leaser/GetUsersListings", result => {
-                this.listings = result;
+                this.listings = result.map(r => {
+                    var obj = {};
+                    obj.BaseObj = r;
+                    obj.Edit = false;
+                    obj.Copy = null;
+                    return obj;
+                });
             });
         },
         getLocations: function () {
@@ -84,11 +91,26 @@
         makeEditable: function (item) {
             if (!item.Edit) {
                 item.Edit = !item.Edit;
-                //item.Copy = jQuery.extend(true, {}, item);
+                item.Copy = jQuery.extend(true, {}, item.BaseObj);
             }
-
             else {
                 this.cancel(item);
+            }
+        },
+        cancel: function (object) {
+            if (object.BaseObj.Id) {
+                object.Date = moment.parseZone(object.BaseObj.Date).format("YYYY-MM-DD");
+                object.BaseObj = object.Copy;
+                object.Edit = false;
+                console.log(object);
+            }
+        },
+        updateListing: function (index) {
+            var item = this.listings[index];
+            item.BaseObj.Date = moment.parseZone(item.BaseObj.Date).format("YYYY-MM-DD");
+            if (item.BaseObj) {
+                $.post("/Leaser/Update", { listing: item.BaseObj });
+                item.Edit = !item.Edit;
             }
         }
     },

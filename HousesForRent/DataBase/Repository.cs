@@ -42,10 +42,10 @@ namespace HousesForRent.DataBase
             DbSet.Add(entity);
         }
 
-        public virtual void Update(T entity)
-        {
-            context.Entry<T>(entity).State = EntityState.Modified;
-        }
+        //public virtual void Update(T entity)
+        //{
+        //    context.Entry<T>(entity).State = EntityState.Modified;
+        //}
 
         public void Delete(int id)
         {
