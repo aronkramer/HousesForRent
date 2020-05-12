@@ -41,5 +41,6 @@ namespace HousesForRent.Models
 
         public DbSet<LeasersInformation> LeasersInformations { get; set; }
         public DbSet<Location> Locations { get; set; }
+        public DbSet<Pictures> Pictures { get; set; }
     }
 }

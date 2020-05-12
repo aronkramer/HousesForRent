@@ -8,7 +8,8 @@
         rentals: [],
         locations: '',
         cities: [],
-        theLocationId: ''
+        theLocationId: '',
+        pictures: []
     },
     methods: {
         allRentals: function () {
@@ -71,6 +72,11 @@
                 })
                 this.rentals = isFurnished;
             }
+        },
+        seePictures: function (Id) {
+            $.get("/Leaser/GetPictures", { PicId: Id }, result => {
+                this.pictures = result;
+            });
         }
     },
     filters: {

@@ -3,6 +3,7 @@ using HousesForRent.Helpers;
 using HousesForRent.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -19,8 +20,12 @@ namespace HousesForRent.Controllers
 
         public ActionResult UsersListings()
         {
-            var v = GetUsersListings();
-            return View(v);
+            if (TempData["PictureLimit"] != null)
+            {
+                ViewBag.PictureMessage = (string)TempData["PictureLimit"];
+            }
+
+            return View(GetUsersListings());
         }
 
         [HttpPost]
@@ -66,6 +71,32 @@ namespace HousesForRent.Controllers
             var info = listing.ToViewModelSingle<LeasersInformationViewModel, LeasersInformation>();
             repo.Update(info);
             repo.SaveChanges();
+        }
+
+        [HttpPost]
+        public ActionResult UploadImage(HttpPostedFileBase imageFile, int Id)
+        {
+            string fileName = Guid.NewGuid() + Path.GetExtension(imageFile.FileName);
+            imageFile.SaveAs($"{Server.MapPath("/UploadedImages/")}{fileName}");
+
+            var repo = new LeaserRepository();
+
+            var picLimit = repo.AmountOfPicturesById(Id);
+            if (picLimit >= 10)
+            {
+                TempData["PictureLimit"] = "Limited to 10 pictures only";
+                return RedirectToAction("UsersListings");
+            }
+
+            repo.UploadImage(fileName, Id);
+            return RedirectToAction("UsersListings");
+        }
+
+        public ActionResult GetPictures(int PicId)
+        {
+            var repo = new LeaserRepository();
+            var test = repo.GetPicturesById(PicId);
+            return Json(test, JsonRequestBehavior.AllowGet);
         }
     }
 }

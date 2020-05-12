@@ -56,5 +56,21 @@ namespace HousesForRent.DataBase
             context.SaveChanges();
         }
 
+        public void UploadImage(string fileName, int Id)
+        {
+            context.Pictures.Add(new Pictures { Picture = fileName, FileName = Id });
+            context.SaveChanges();
+        }
+
+        public int AmountOfPicturesById(int Id)
+        {
+            return context.Database.SqlQuery<int>($"exec PictureAmount @Id = {Id}").FirstOrDefault();
+        }
+
+        public List<Pictures> GetPicturesById(int PicId)
+        {
+            var t = context.Pictures.Where(x => x.FileName == PicId).ToList();
+            return t;
+        }
     }
 }

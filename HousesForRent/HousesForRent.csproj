@@ -278,12 +278,29 @@
     <Compile Include="Migrations\202002191311501_dateRequired.designer.cs">
       <DependentUpon>202002191311501_dateRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005031555427_fix003.cs" />
+    <Compile Include="Migrations\202005031555427_fix003.designer.cs">
+      <DependentUpon>202005031555427_fix003.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005050127193_pictures.cs" />
+    <Compile Include="Migrations\202005050127193_pictures.designer.cs">
+      <DependentUpon>202005050127193_pictures.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005070040582_picturefk.cs" />
+    <Compile Include="Migrations\202005070040582_picturefk.designer.cs">
+      <DependentUpon>202005070040582_picturefk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005070123236_fixPicFk.cs" />
+    <Compile Include="Migrations\202005070123236_fixPicFk.designer.cs">
+      <DependentUpon>202005070123236_fixPicFk.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\LocationViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LeasersInfoViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PicturesViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -364,6 +381,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="UploadedImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -450,6 +468,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002191311501_dateRequired.resx">
       <DependentUpon>202002191311501_dateRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005031555427_fix003.resx">
+      <DependentUpon>202005031555427_fix003.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005050127193_pictures.resx">
+      <DependentUpon>202005050127193_pictures.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005070040582_picturefk.resx">
+      <DependentUpon>202005070040582_picturefk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005070123236_fixPicFk.resx">
+      <DependentUpon>202005070123236_fixPicFk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
