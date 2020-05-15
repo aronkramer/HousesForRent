@@ -1,5 +1,4 @@
-﻿@model IEnumerable<HousesForRent.Models.Pictures>
-
+﻿
 @{
     ViewBag.Title = "ViewAll";
 }
@@ -24,6 +23,7 @@
         <input class="form-control" placeholder="location" list="locations" id="getLocationId" v-on:change="getLocationIdOnInput();" />
         <button class="btn-link" v-on:click="allRentals();clearInputs()">refresh</button>
     </div>
+
     <table id="RentalTable" class="table table-bordered" style="width:1000px; margin-top:30px;">
         <tr>
             <th>contact info</th>
@@ -46,7 +46,7 @@
             <td>{{x.Furnished | isFurnished}}</td>
             <td :data-locationid="x.Location.Id">{{x.Location.City}} {{x.Location.State}} {{x.Location.Country}}</td>
             <td>
-                <button type="button" v-on:click="seePictures(x.Id)" class="btn btn-info" data-toggle="modal" data-target="#myModal">Open Modal</button>
+                <button type="button" v-on:click="seePictures(x.Id)" class="btn btn-info" data-toggle="modal" data-target="#myModal">View Pictures</button>
             </td>
         </tr>
     </table>
@@ -58,35 +58,39 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Pictures for id: </h4>
+                    <h4 class="modal-title">Pictures</h4>
                 </div>
                 <div class="modal-body">
 
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">
-                            @if (Model != null)
-                            {
-                                foreach (var image in Model)
-                                {
-                                    <div class="well" style="padding: 20px; text-align: center;">
-                                        <h1>@image.Picture @image.Id @image.FileName</h1>
-                                        <img src="/UploadedImages/@image.Picture" style="width: 300px;" />
-                                    </div>
-                                }
-                            }
+
+                            <div v-if="pictures.length > 0">
+                                <div v-for="pic in pictures">
+                                    <hr />
+                                    <img v-bind:src="pic" style="width: 400px;" />
+                                </div>
+                            </div>
+
+                            <div v-else>
+                                <h2>Sorry, No Photos were uploaded yet.</h2>
+                            </div>
+
                         </div>
                     </div>
-
                 </div>
+
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
+            </div>
 
         </div>
-    </div>
 
 </div>
+
 
 @section scripts{
     <script src="~/Scripts/moment.js"></script>

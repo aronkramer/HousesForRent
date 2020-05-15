@@ -75,7 +75,11 @@
         },
         seePictures: function (Id) {
             $.get("/Leaser/GetPictures", { PicId: Id }, result => {
-                this.pictures = result;
+                var p = result.map(a => a.Picture);
+                var fullPath = p.map(function (item) {
+                    return `/UploadedImages/${item}`;
+                });
+                this.pictures = fullPath;
             });
         }
     },
