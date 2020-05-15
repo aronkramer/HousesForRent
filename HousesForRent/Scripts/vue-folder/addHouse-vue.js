@@ -121,7 +121,7 @@
         },
         DeletePic: function (Id, FileName, Picture) {
             $.post("/Leaser/DeletePic", { PicId: Id, Picture });
-            this.seePictures();
+            this.seePictures(FileName);
         }
     },
     filters: {
