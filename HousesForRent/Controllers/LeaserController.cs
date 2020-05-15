@@ -95,8 +95,14 @@ namespace HousesForRent.Controllers
         public ActionResult GetPictures(int PicId)
         {
             var repo = new LeaserRepository();
-            var test = repo.GetPicturesById(PicId);
-            return Json(test, JsonRequestBehavior.AllowGet);
+            return Json(repo.GetPicturesById(PicId), JsonRequestBehavior.AllowGet);
+        }
+
+        public void DeletePic(int PicId, string Picture)
+        {
+            var repo = new LeaserRepository();
+            repo.DeletePicturesById(PicId);
+            System.IO.File.Delete($"{Server.MapPath("/UploadedImages/")}{Picture}");
         }
     }
 }

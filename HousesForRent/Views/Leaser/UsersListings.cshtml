@@ -24,16 +24,16 @@
 
         <table class="table table-bordered table-striped">
             <tr>
-                <th>bedrooms</th>
-                <th>bathrooms</th>
-                <th>comments</th>
-                <th>contact info</th>
-                <th>Price</th>
-                <th>Date</th>
-                <th>Is Furnished</th>
-                <th>location</th>
-                <th>Pictures</th>
-                <th>Actions</th>
+                <th style="text-align:center">bedrooms</th>
+                <th style="text-align:center">bathrooms</th>
+                <th style="text-align:center">comments</th>
+                <th style="text-align:center">contact info</th>
+                <th style="text-align:center">Price</th>
+                <th style="text-align:center">Date</th>
+                <th style="text-align:center">Is Furnished</th>
+                <th style="text-align:center">location</th>
+                <th style="text-align:center" colspan="2">Pictures</th>
+                <th style="text-align:center">Actions</th>
             </tr>
             <tr v-for="(x, index) in listings">
 
@@ -97,10 +97,14 @@
                 @*location*@
                 <td>{{x.BaseObj.Location.City}} {{x.BaseObj.Location.State}} ({{x.BaseObj.Location.Country}})</td>
 
-                <td>
+                <td width="50%">
+                    <button type="button" v-on:click="seePictures(x.BaseObj.Id)" class="btn btn-info" data-toggle="modal" data-target="#myModal">View Pictures</button>
+                </td>
+
+                <td width="50%">
                     <form method="post" action="/Leaser/UploadImage" enctype="multipart/form-data">
                         <input hidden v-model="x.BaseObj.Id" name="Id" />
-                        <input type="file" name="imagefile" required/>
+                        <input type="file" name="imagefile" required />
                         <br />
                         <button class="btn btn-success">Submit</button>
                     </form>
@@ -114,10 +118,53 @@
                 </td>
             </tr>
         </table>
+
+
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Pictures</h4>
+                    </div>
+                    <div class="modal-body" style="background-color:burlywood">
+
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
+
+                                <div v-if="pictures.length > 0">
+                                    <div v-for="pic in pictures">
+                                        <hr />
+                                        <div class="row">
+                                            <button v-on:click="DeletePic(pic.Id, pic.FileName, pic.Picture)" class="btn btn-danger">Delete Photo</button>
+                                            <img v-bind:src="'/UploadedImages/' + pic.Picture" style="width: 400px;" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div v-else>
+                                    <h2>Please upload your photos!</h2>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
     </div>
 
-    @section scripts{
-        <script src="~/Scripts/moment.js"></script>
-        <script src="~/Scripts/vue.js"></script>
-        <script src="~/Scripts/vue-folder/addHouse-vue.js"></script>
-    }
+@section scripts{
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/vue.js"></script>
+    <script src="~/Scripts/vue-folder/addHouse-vue.js"></script>
+}

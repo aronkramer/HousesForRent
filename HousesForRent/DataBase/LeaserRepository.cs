@@ -69,8 +69,16 @@ namespace HousesForRent.DataBase
 
         public List<Pictures> GetPicturesById(int PicId)
         {
-            var t = context.Pictures.Where(x => x.FileName == PicId).ToList();
-            return t;
+            return context.Pictures.Where(x => x.FileName == PicId).ToList();
+        }
+
+        public void DeletePicturesById(int PicId)
+        {
+            Pictures pictures = new Pictures { Id = PicId };
+            context.Pictures.Attach(pictures);
+            context.Pictures.Remove(pictures);
+            context.SaveChanges();
+
         }
     }
 }

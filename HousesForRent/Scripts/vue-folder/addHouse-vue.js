@@ -31,7 +31,8 @@
         getState:'',
         country: '',
         theLocationId: '',
-        Edit: false
+        Edit: false,
+        pictures: []
     },
     methods: {
         addRental: function () {
@@ -112,6 +113,15 @@
                 $.post("/Leaser/Update", { listing: item.BaseObj });
                 item.Edit = !item.Edit;
             }
+        },
+        seePictures: function (Id) {
+            $.get("/Leaser/GetPictures", { PicId: Id }, result => {
+                this.pictures = result;
+            });
+        },
+        DeletePic: function (Id, FileName, Picture) {
+            $.post("/Leaser/DeletePic", { PicId: Id, Picture });
+            this.seePictures();
         }
     },
     filters: {
