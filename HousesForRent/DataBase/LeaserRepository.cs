@@ -78,7 +78,24 @@ namespace HousesForRent.DataBase
             context.Pictures.Attach(pictures);
             context.Pictures.Remove(pictures);
             context.SaveChanges();
+        }
 
+        public void PauseListing(int Id, string user)
+        {
+            bool pause = true;
+
+            var listing = context.LeasersInformations.Where(x => x.Id == Id && x.UserId == user).FirstOrDefault();
+            if (listing.Paused)
+            {
+                pause = false;
+            }
+            context.Database.ExecuteSqlCommand(@"update LeasersInformations set Paused = @pause
+                                                 where id = @id and UserId = @userid",
+                                                 new SqlParameter("@id",Id),
+                                                 new SqlParameter("@userid", user),
+                                                 new SqlParameter("@pause", pause));
+            context.SaveChanges();
+            
         }
     }
 }

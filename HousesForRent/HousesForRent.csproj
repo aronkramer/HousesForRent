@@ -294,6 +294,10 @@
     <Compile Include="Migrations\202005070123236_fixPicFk.designer.cs">
       <DependentUpon>202005070123236_fixPicFk.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005152319458_paused001.cs" />
+    <Compile Include="Migrations\202005152319458_paused001.designer.cs">
+      <DependentUpon>202005152319458_paused001.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\LocationViewModel.cs" />
@@ -480,6 +484,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005070123236_fixPicFk.resx">
       <DependentUpon>202005070123236_fixPicFk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005152319458_paused001.resx">
+      <DependentUpon>202005152319458_paused001.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

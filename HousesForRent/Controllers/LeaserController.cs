@@ -104,5 +104,13 @@ namespace HousesForRent.Controllers
             repo.DeletePicturesById(PicId);
             System.IO.File.Delete($"{Server.MapPath("/UploadedImages/")}{Picture}");
         }
+
+        [HttpPost]
+        public void Pause(int Id)
+        {
+            var repo = new LeaserRepository();
+            var user = repo.GetUserId(User.Identity.Name);
+            repo.PauseListing(Id, user);
+        }
     }
 }

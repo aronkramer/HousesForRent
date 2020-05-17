@@ -12,11 +12,11 @@
     data: {
         listingsInfo: {
             ContactInfo: '',
-            Bedrooms:    '',
-            Bathrooms:   '',
-            Price:       '',
-            Comments:    '',
-            Date:        '',
+            Bedrooms: '',
+            Bathrooms: '',
+            Price: '',
+            Comments: '',
+            Date: '',
             Furnished: '',
             LocationId: ''
         },
@@ -28,11 +28,12 @@
         listings: null,
         countryLocations: [],
         countryLocation: '',
-        getState:'',
+        getState: '',
         country: '',
         theLocationId: '',
         Edit: false,
-        pictures: []
+        pictures: [],
+        enabled: false
     },
     methods: {
         addRental: function () {
@@ -122,6 +123,15 @@
         DeletePic: function (Id, FileName, Picture) {
             $.post("/Leaser/DeletePic", { PicId: Id, Picture });
             this.seePictures(FileName);
+        },
+        pauseListing: function (Id) {
+            $.post("/Leaser/Pause", { Id });
+            const delay = ms => new Promise(res => setTimeout(res, ms));
+            const pause = async () => {
+                await delay(100);
+                this.usersListings();
+            };
+            pause();
         }
     },
     filters: {
@@ -138,4 +148,5 @@
             return null;
         }
     }
-})
+});
+
