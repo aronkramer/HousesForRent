@@ -34,6 +34,8 @@ namespace HousesForRent.Models
         public Location Location { get; set; }
         [DefaultValue(false)]
         public bool Paused { get; set; } = false;
+        [Required]
+        public DateTime Expiration { get; set; }
     }
 
     public class LeasersInformationViewModel
@@ -50,6 +52,6 @@ namespace HousesForRent.Models
         public int LocationId { get; set; }
         public Location Location { get; set; }
         public bool Paused { get; set; }
-
+        public DateTime Expiration { get; set; }
     }
 }

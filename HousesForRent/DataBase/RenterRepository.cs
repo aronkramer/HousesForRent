@@ -14,7 +14,8 @@ namespace HousesForRent.DataBase
 
         public List<LeasersInformationViewModel> GetAllRentals()
         {
-            var leasersinfo = context.LeasersInformations.Include(z => z.Location).ToList().Where(x => !x.Paused).ToList();
+            var leasersinfo = context.LeasersInformations.Include(z => z.Location).ToList()
+                .Where(x => !x.Paused && x.Expiration > DateTime.Today).ToList();
             return leasersinfo.ToViewModel<LeasersInformation, LeasersInformationViewModel>().ToList();
         }
 
