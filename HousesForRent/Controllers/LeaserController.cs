@@ -114,5 +114,15 @@ namespace HousesForRent.Controllers
             var user = repo.GetUserId(User.Identity.Name);
             repo.PauseListing(Id, user);
         }
+
+        [HttpPost]
+        public void RenewAd(LeasersInformationViewModel listing)
+        {
+            var repo = new LeaserRepository();
+            listing.UserId = repo.GetUserId(User.Identity.Name);
+            listing.Location = new Location { Id = listing.LocationId };
+            var info = listing.ToViewModelSingle<LeasersInformationViewModel, LeasersInformation>();
+            repo.RenewAdById(info);
+        }
     }
 }

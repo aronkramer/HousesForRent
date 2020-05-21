@@ -124,7 +124,7 @@
                         <button class="btn-group-justified btn btn-primary" v-on:click="makeEditable(x)">Edit</button>
                         <template v-if="x.BaseObj.Expired">
                             <br />
-                            <button class="btn-group-justified btn btn-warning"
+                            <button class="btn-group-justified btn btn-warning" v-on:click="getIdToRenew(index)"
                                     data-toggle="modal" data-target="#renewAdModal">Renew ad</button>
                         </template>
                     </td>
@@ -187,8 +187,7 @@
                         <h4 class="modal-title">renew ad</h4>
                     </div>
                     <div class="modal-body" style="background-color:burlywood">
-
-                        <button @*v-on:click="renewAd(x.BaseObj.Id)"*@>Renew add</button>
+                        <button v-on:click="renewAd(indexForRenewAdModal)">Renew add</button>
 
                     </div>
 

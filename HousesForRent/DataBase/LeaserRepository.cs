@@ -102,5 +102,11 @@ namespace HousesForRent.DataBase
             context.SaveChanges();
             
         }
+
+        public void RenewAdById(LeasersInformation user)
+        {
+            user.Expiration = DateTime.Now.AddMonths(2);
+            Update(user);
+        }
     }
 }

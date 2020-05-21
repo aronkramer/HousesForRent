@@ -33,7 +33,8 @@
         theLocationId: '',
         Edit: false,
         pictures: [],
-        enabled: false
+        enabled: false,
+        indexForRenewAdModal: null
     },
     methods: {
         addRental: function () {
@@ -129,13 +130,25 @@
             $.post("/Leaser/Pause", { Id });
             const delay = ms => new Promise(res => setTimeout(res, ms));
             const pause = async () => {
-                await delay(100);
+                await delay(150);
                 this.usersListings();
             };
             pause();
         },
-        renewAd: function (Id) {
-            console.log(Id);
+        getIdToRenew: function (index) {
+            //this.idForRenewAdModal = Id;
+            this.indexForRenewAdModal = index;
+        },
+        renewAd: function (index) {
+            var item = this.listings[index];
+            item.BaseObj.Date = moment.parseZone(item.BaseObj.Date).format("YYYY-MM-DD");
+            $.post("/Leaser/RenewAd", { listing: item.BaseObj });
+            const delay = ms => new Promise(res => setTimeout(res, ms));
+            const pause = async () => {
+                await delay(350);
+                window.location.reload();
+            };
+            pause();
         }
     },
     filters: {
