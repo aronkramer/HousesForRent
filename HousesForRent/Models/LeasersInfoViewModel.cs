@@ -53,5 +53,6 @@ namespace HousesForRent.Models
         public Location Location { get; set; }
         public bool Paused { get; set; }
         public DateTime Expiration { get; set; }
+        public bool IsExpired { get; set; }
     }
 }

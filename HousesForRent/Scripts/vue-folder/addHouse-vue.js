@@ -61,6 +61,7 @@
                 this.listings = result.map(r => {
                     var obj = {};
                     obj.BaseObj = r;
+                    obj.BaseObj.Expired = r.IsExpired;
                     obj.Edit = false;
                     obj.Copy = null;
                     return obj;
@@ -132,6 +133,9 @@
                 this.usersListings();
             };
             pause();
+        },
+        renewAd: function (Id) {
+            console.log(Id);
         }
     },
     filters: {

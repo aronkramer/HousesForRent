@@ -23,7 +23,12 @@ namespace HousesForRent.DataBase
         public List<LeasersInformationViewModel> GetListingsById(string UserId)
         {
             var v = context.LeasersInformations.Include(z => z.Location).Where(x => x.UserId == UserId).ToList();
-            return v.ToViewModel<LeasersInformation, LeasersInformationViewModel>().ToList();
+            var list = v.ToViewModel<LeasersInformation, LeasersInformationViewModel>().ToList();
+            foreach(var l in list)
+            {
+                l.IsExpired = l.Expiration < DateTime.Now;
+            }
+            return list;
             
         }
 

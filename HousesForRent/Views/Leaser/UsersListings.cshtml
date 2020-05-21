@@ -120,7 +120,14 @@
                         </form>
                     </td>
 
-                    <td v-if="!x.Edit"><button class="btn btn-primary" v-on:click="makeEditable(x)">Edit</button></td>
+                    <td v-if="!x.Edit" :style="{ background: x.BaseObj.Expired ? 'red' : 'white' }">
+                        <button class="btn-group-justified btn btn-primary" v-on:click="makeEditable(x)">Edit</button>
+                        <template v-if="x.BaseObj.Expired">
+                            <br />
+                            <button class="btn-group-justified btn btn-warning"
+                                    data-toggle="modal" data-target="#renewAdModal">Renew ad</button>
+                        </template>
+                    </td>
                     <td v-else>
                         <button class="btn btn-xs btn-success" v-on:click="updateListing(index);">Update</button>
                         <br /><br />
@@ -131,7 +138,7 @@
         </table>
 
 
-        <!-- Modal -->
+        <!-- Modal pictures-->
         <div id="myModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -160,6 +167,29 @@
 
                             </div>
                         </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Modal renew ad-->
+        <div id="renewAdModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">renew ad</h4>
+                    </div>
+                    <div class="modal-body" style="background-color:burlywood">
+
+                        <button @*v-on:click="renewAd(x.BaseObj.Id)"*@>Renew add</button>
+
                     </div>
 
 

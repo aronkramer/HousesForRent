@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace HousesForRent.Controllers
 {
+    [Authorize]
     public class LeaserController : Controller
     {
         // PAGES
