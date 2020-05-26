@@ -3,6 +3,7 @@
     mounted: function () {
         this.allRentals();
         this.getLocations();
+
     },
     data: {
         rentals: [],
@@ -22,7 +23,7 @@
             document.getElementById("getLocationId").value = "";
         },
         getLocations: function () {
-            $.get("/Leaser/GetLocations", result => {
+            $.get("/Home/GetLocations", result => {
                 this.cities = result;
             });
         },

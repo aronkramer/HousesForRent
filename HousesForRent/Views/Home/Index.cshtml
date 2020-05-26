@@ -1,10 +1,18 @@
-﻿<div id="tenant">
-    
-
+﻿<div class="well col-md-4 col-md-offset-4" style="margin-top:80px;">
+    @if (!String.IsNullOrEmpty(@ViewBag.Message))
+    {
+        <div class="alert alert-success">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            @ViewBag.Message
+        </div>
+    }
+    <form action="/home/SendNotificationEmail">
+        <input class="form-control" placeholder="Email" name="email" type="email" required/>
+        <hr />
+        <textarea placeholder="If your writing in a new ciy please write city, state, country (in this order). If there is no state, just write the country twice instead of the state. (Jerusalem Israel Israel)" 
+                  class="form-control" rows="10" name="messageBody" 
+                  required></textarea>
+        <hr />
+        <button class="btn btn-primary">Submit</button>
+    </form>
 </div>
-
-
-@section scripts{
-    <script src="~/Scripts/vue.js"></script>
-    <script src="~/Scripts/vue-folder/editHouse-vue.js"></script>
-}

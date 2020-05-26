@@ -1,6 +1,11 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    /*background-image: url('photo-1557683311-eac922347aa1.jpg');*/
+    background-color: #E5FCFD;
+    background-size: cover;
+    background-position: center;
+    margin: auto;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -14,6 +19,14 @@
 */
 .dl-horizontal dt {
     white-space: normal;
+}
+
+.borderButton {
+    font-family: Verdana, Helvetica, Arial, sans-serif;
+    color: red;
+    border: double;
+    border-radius: 2px;
+    border-color: red;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */

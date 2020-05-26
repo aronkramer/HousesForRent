@@ -1,9 +1,4 @@
-﻿
-@{
-    ViewBag.Title = "UsersListings";
-}
-
-<h4>@User.Identity.Name</h4>
+﻿<h2 style="text-align:center; color:aliceblue">@User.Identity.Name</h2>
 
 @if (!String.IsNullOrEmpty(@ViewBag.PictureMessage))
 {
@@ -14,194 +9,195 @@
 }
 
 
-    <div id="landlord">
+<div id="landlord">
+    <datalist id="country">
+        <option v-for="countryLocation in countryLocations">
+            {{countryLocation.BaseObj.City}} {{countryLocation.BaseObj.State}} {{countryLocation.BaseObj.Country}}
+        </option>
+    </datalist>
 
-        <datalist id="country">
-            <option v-for="countryLocation in countryLocations">
-                {{countryLocation.BaseObj.City}} {{countryLocation.BaseObj.State}} {{countryLocation.BaseObj.Country}}
-            </option>
-        </datalist>
+    <table class="table table-bordered table-striped well col-lg-12">
+        <tr>
+            <th style="text-align:center">Pause ad</th>
+            <th style="text-align:center">contact info</th>
+            <th style="text-align:center">bedrooms</th>
+            <th style="text-align:center">bathrooms</th>
+            <th style="text-align:center">Price</th>
+            <th style="text-align:center">comments</th>
+            <th style="text-align:center">Rental Starts</th>
+            <th style="text-align:center">Furnished</th>
+            <th style="text-align:center">location</th>
+            <th style="text-align:center" colspan="2">Pictures</th>
+            <th style="text-align:center">Actions</th>
+        </tr>
+        <template v-for="(x, index) in listings">
+            <tr :style="{ background: x.BaseObj.Paused ? '#ff9999' : 'white' }">
+                @*status*@
+                <td v-if="x.BaseObj.Paused">
+                    <button v-on:click="pauseListing(x.BaseObj.Id)" class="btn-sm btn-success">show</button>
+                </td>
+                <td v-if="!x.BaseObj.Paused">
+                    <button v-on:click="pauseListing(x.BaseObj.Id)" class="btn-sm btn-danger">hide</button>
+                </td>
 
-        <table class="table table-bordered table-striped">
-            <tr>
-                <th style="text-align:center">Status</th>
-                <th style="text-align:center">bedrooms</th>
-                <th style="text-align:center">bathrooms</th>
-                <th style="text-align:center">comments</th>
-                <th style="text-align:center">contact info</th>
-                <th style="text-align:center">Price</th>
-                <th style="text-align:center">Date</th>
-                <th style="text-align:center">Is Furnished</th>
-                <th style="text-align:center">location</th>
-                <th style="text-align:center" colspan="2">Pictures</th>
-                <th style="text-align:center">Actions</th>
+                @*ContactInfo*@
+                <td v-if="!x.Edit">
+                    <span>{{x.BaseObj.ContactInfo}}</span>
+                </td>
+                <td v-else>
+                    <input v-model="x.BaseObj.ContactInfo" style="background-color:cornsilk" size="5"/>
+                </td>
+
+                @*bedrooms*@
+                <td v-if="!x.Edit">
+                    <span>{{x.BaseObj.Bedrooms}}</span>
+                </td>
+                <td v-else>
+                    <input v-model="x.BaseObj.Bedrooms" style="background-color:cornsilk" size="1" />
+                </td>
+
+                @*bathrooms*@
+                <td v-if="!x.Edit">
+                    <span>{{x.BaseObj.Bathrooms}}</span>
+                </td>
+                <td v-else>
+                    <input v-model="x.BaseObj.Bathrooms" style="background-color:cornsilk" size="1" />
+                </td>
+
+                @*price*@
+                <td v-if="!x.Edit">
+                    <span>{{x.BaseObj.Price}}</span>
+                </td>
+                <td v-else>
+                    <input v-model="x.BaseObj.Price" style="background-color:cornsilk" size="1" />
+                </td>
+
+                @*Comments*@
+                <td v-if="!x.Edit">
+                    <span>{{x.BaseObj.Comments}}</span>
+                </td>
+                <td v-else>
+                    <textarea v-model="x.BaseObj.Comments" style="background-color:cornsilk;" rows="10"></textarea>
+                </td>
+
+                @*Date*@
+                <td v-if="!x.Edit">
+                    <span>{{x.BaseObj.Date | toShortDateString}}</span>
+                </td>
+                <td v-else>
+                    <input type="date" v-model="x.BaseObj.Date" style="background-color:cornsilk" size="1" />
+                </td>
+
+                @*Furnished*@
+                <td v-if="!x.Edit">
+                    <span>{{x.BaseObj.Furnished | isFurnished}}</span>
+                </td>
+                <td v-else>
+                    <input type="checkbox" v-model="x.BaseObj.Furnished" size="3" />
+                </td>
+
+
+                @*location*@
+                <td>{{x.BaseObj.Location.City}} {{x.BaseObj.Location.State}} ({{x.BaseObj.Location.Country}})</td>
+
+                @*pictures*@
+                <td width="50%">
+                    <button type="button" v-on:click="seePictures(x.BaseObj.Id)" class="btn btn-info" data-toggle="modal" data-target="#myModal">View Pictures</button>
+                </td>
+
+                <td width="50%">
+                    <form method="post" action="/Leaser/UploadImage" enctype="multipart/form-data">
+                        <input hidden v-model="x.BaseObj.Id" name="Id" />
+                        <input type="file" name="imagefile" required />
+                        <br />
+                        <button class="btn btn-success">Submit</button>
+                    </form>
+                </td>
+
+                <td v-if="!x.Edit" :style="{ background: x.BaseObj.Expired ? 'red' : 'white' }">
+                    <button class="btn-group-justified btn btn-primary" v-on:click="makeEditable(x)">Edit</button>
+                    <template v-if="x.BaseObj.Expired">
+                        <br />
+                        <button class="btn-group-justified btn btn-warning" v-on:click="getIdToRenew(index)"
+                                data-toggle="modal" data-target="#renewAdModal">
+                            Renew ad
+                        </button>
+                    </template>
+                </td>
+                <td v-else>
+                    <button class="btn btn-xs btn-success" v-on:click="updateListing(index);">Update</button>
+                    <br /><br />
+                    <button class="btn btn-xs btn-warning" v-on:click="cancel(x)">Cancel</button>
+                </td>
             </tr>
-            <template v-for="(x, index) in listings">
-                <tr :style="{ background: x.BaseObj.Paused ? 'red' : 'white' }">
-                    @*status*@
-                    <td v-if="x.BaseObj.Paused">
-                        <button v-on:click="pauseListing(x.BaseObj.Id)">show to public</button>
-                    </td>
-                    <td v-if="!x.BaseObj.Paused">
-                        <button v-on:click="pauseListing(x.BaseObj.Id)">hide from public</button>
-                    </td>
+        </template>
+    </table>
 
 
-                    @*bedrooms*@
-                    <td v-if="!x.Edit">
-                        <span>{{x.BaseObj.Bedrooms}}</span>
-                    </td>
-                    <td v-else>
-                        <input v-model="x.BaseObj.Bedrooms" style="background-color:cornsilk" size="1" />
-                    </td>
+    <!-- Modal pictures-->
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Pictures</h4>
+                </div>
+                <div class="modal-body" style="background-color:burlywood">
 
-                    @*bathrooms*@
-                    <td v-if="!x.Edit">
-                        <span>{{x.BaseObj.Bathrooms}}</span>
-                    </td>
-                    <td v-else>
-                        <input v-model="x.BaseObj.Bathrooms" style="background-color:cornsilk" size="1" />
-                    </td>
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3">
 
-                    @*Comments*@
-                    <td v-if="!x.Edit">
-                        <span>{{x.BaseObj.Comments}}</span>
-                    </td>
-                    <td v-else>
-                        <input v-model="x.BaseObj.Comments" style="background-color:cornsilk" />
-                    </td>
-
-                    @*ContactInfo*@
-                    <td v-if="!x.Edit">
-                        <span>{{x.BaseObj.ContactInfo}}</span>
-                    </td>
-                    <td v-else>
-                        <input v-model="x.BaseObj.ContactInfo" style="background-color:cornsilk" />
-                    </td>
-
-                    @*price*@
-                    <td v-if="!x.Edit">
-                        <span>{{x.BaseObj.Price}}</span>
-                    </td>
-                    <td v-else>
-                        <input v-model="x.BaseObj.Price" style="background-color:cornsilk" size="1" />
-                    </td>
-
-                    @*Date*@
-                    <td v-if="!x.Edit">
-                        <span>{{x.BaseObj.Date | toShortDateString}}</span>
-                    </td>
-                    <td v-else>
-                        <input type="date" v-model="x.BaseObj.Date" style="background-color:cornsilk" size="1" />
-                    </td>
-
-                    @*Furnished*@
-                    <td v-if="!x.Edit">
-                        <span>{{x.BaseObj.Furnished | isFurnished}}</span>
-                    </td>
-                    <td v-else>
-                        <input type="checkbox" v-model="x.BaseObj.Furnished" size="3" />
-                    </td>
-
-
-                    @*location*@
-                    <td>{{x.BaseObj.Location.City}} {{x.BaseObj.Location.State}} ({{x.BaseObj.Location.Country}})</td>
-
-                    <td width="50%">
-                        <button type="button" v-on:click="seePictures(x.BaseObj.Id)" class="btn btn-info" data-toggle="modal" data-target="#myModal">View Pictures</button>
-                    </td>
-
-                    <td width="50%">
-                        <form method="post" action="/Leaser/UploadImage" enctype="multipart/form-data">
-                            <input hidden v-model="x.BaseObj.Id" name="Id" />
-                            <input type="file" name="imagefile" required />
-                            <br />
-                            <button class="btn btn-success">Submit</button>
-                        </form>
-                    </td>
-
-                    <td v-if="!x.Edit" :style="{ background: x.BaseObj.Expired ? 'red' : 'white' }">
-                        <button class="btn-group-justified btn btn-primary" v-on:click="makeEditable(x)">Edit</button>
-                        <template v-if="x.BaseObj.Expired">
-                            <br />
-                            <button class="btn-group-justified btn btn-warning" v-on:click="getIdToRenew(index)"
-                                    data-toggle="modal" data-target="#renewAdModal">Renew ad</button>
-                        </template>
-                    </td>
-                    <td v-else>
-                        <button class="btn btn-xs btn-success" v-on:click="updateListing(index);">Update</button>
-                        <br /><br />
-                        <button class="btn btn-xs btn-warning" v-on:click="cancel(x)">Cancel</button>
-                    </td>
-                </tr>
-            </template>
-        </table>
-
-
-        <!-- Modal pictures-->
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Pictures</h4>
-                    </div>
-                    <div class="modal-body" style="background-color:burlywood">
-
-                        <div class="row">
-                            <div class="col-md-6 col-md-offset-3">
-
-                                <div v-if="pictures.length > 0">
-                                    <div v-for="pic in pictures">
-                                        <hr />
-                                        <div class="row">
-                                            <button v-on:click="DeletePic(pic.Id, pic.FileName, pic.Picture)" class="btn btn-danger">Delete Photo</button>
-                                            <img v-bind:src="'/UploadedImages/' + pic.Picture" style="width: 400px;" />
-                                        </div>
+                            <div v-if="pictures.length > 0">
+                                <div v-for="pic in pictures">
+                                    <hr />
+                                    <div class="row">
+                                        <button v-on:click="DeletePic(pic.Id, pic.FileName, pic.Picture)" class="btn btn-danger">Delete Photo</button>
+                                        <img v-bind:src="'/UploadedImages/' + pic.Picture" style="width: 400px;"/>
                                     </div>
                                 </div>
-
-                                <div v-else>
-                                    <h2>Please upload your photos!</h2>
-                                </div>
-
                             </div>
+
+                            <div v-else>
+                                <h2>Please upload your photos!</h2>
+                            </div>
+
                         </div>
                     </div>
+                </div>
 
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-
         </div>
-
-        <!-- Modal renew ad-->
-        <div id="renewAdModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">renew ad</h4>
-                    </div>
-                    <div class="modal-body" style="background-color:burlywood">
-                        <button v-on:click="renewAd(indexForRenewAdModal)">Renew add</button>
-
-                    </div>
-
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
 
     </div>
+
+    <!-- Modal renew ad-->
+    <div id="renewAdModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">renew ad</h4>
+                </div>
+                <div class="modal-body" style="background-color:burlywood">
+                    <button v-on:click="renewAd(indexForRenewAdModal)">Renew add</button>
+
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
 
 @section scripts{
     <script src="~/Scripts/moment.js"></script>

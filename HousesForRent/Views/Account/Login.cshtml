@@ -1,11 +1,10 @@
 ﻿@using HousesForRent.Models
 @model LoginViewModel
-@{
-    ViewBag.Title = "Log in";
-}
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
+
+
+<div class="row col-md-7 col-md-offset-3 well" style="background-color:white; margin-top:40px">
+    <h2 style="text-align:center">Log in</h2>
     <div class="col-md-8">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))

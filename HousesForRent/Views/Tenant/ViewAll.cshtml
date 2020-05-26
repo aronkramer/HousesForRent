@@ -3,95 +3,100 @@
     ViewBag.Title = "ViewAll";
 }
 
-<div id="tenant">
+<div style="padding-top: 50px;
+    padding-bottom: 20px;
+    background-size: cover;
+    background-position: center;
+    margin: auto;" class="well">
+    <div id="tenant">
 
-    <datalist id="locations">
-        <option v-for="city in cities">
-            {{city.City}} {{city.State}} {{city.Country}}
-        </option>
-    </datalist>
+        <datalist id="locations">
+            <option v-for="city in cities">
+                {{city.City}} {{city.State}} {{city.Country}}
+            </option>
+        </datalist>
 
-    <div class="form-inline">
-        Starting date <input id="startingDate" v-on:change="filterDates()" class="form-control" type="date" />
+        <div class="form-inline">
+            Starting date <input id="startingDate" v-on:change="filterDates()" class="form-control" type="date" />
 
-        <select class="form-control" id="temp" v-on:change="filterFurn();">
-            <option value="-1" hidden selected disabled>Select apartment type</option>
-            <option value="0">Furnished</option>
-            <option value="1">Non Furnished</option>
-        </select>
+            <select class="form-control" id="temp" v-on:change="filterFurn();">
+                <option value="-1" hidden selected disabled>Select apartment type</option>
+                <option value="0">Furnished</option>
+                <option value="1">Non Furnished</option>
+            </select>
 
-        <input class="form-control" placeholder="location" list="locations" id="getLocationId" v-on:change="getLocationIdOnInput();" />
-        <button class="btn-link" v-on:click="allRentals();clearInputs()">refresh</button>
-    </div>
+            <input class="form-control" placeholder="location" list="locations" id="getLocationId" v-on:change="getLocationIdOnInput();" />
+            <button class="btn-link" v-on:click="allRentals();clearInputs()">refresh</button>
+        </div>
 
-    <table id="RentalTable" class="table table-bordered" style="width:1000px; margin-top:30px;">
-        <tr>
-            <th>contact info</th>
-            <th>bedrooms</th>
-            <th>bathrooms</th>
-            <th>price</th>
-            <th>comments</th>
-            <th>Rental Starts</th>
-            <th>Furnished</th>
-            <th>location</th>
-            <th>Picture</th>
-        </tr>
-        <tr v-for="x in rentals">
-            <td>{{x.ContactInfo}}</td>
-            <td>{{x.Bedrooms}}</td>
-            <td>{{x.Bathrooms}}</td>
-            <td>{{x.Price}}</td>
-            <td>{{x.Comments}}</td>
-            <td>{{x.Date | toShortDateString}}</td>
-            <td>{{x.Furnished | isFurnished}}</td>
-            <td :data-locationid="x.Location.Id">{{x.Location.City}} {{x.Location.State}} {{x.Location.Country}}</td>
-            <td>
-                <button type="button" v-on:click="seePictures(x.Id)" class="btn btn-info" data-toggle="modal" data-target="#myModal">View Pictures</button>
-            </td>
-        </tr>
-    </table>
+        <table id="RentalTable" class="table table-bordered" style="width:1000px; margin-top:30px;">
+            <tr>
+                <th>contact info</th>
+                <th>bedrooms</th>
+                <th>bathrooms</th>
+                <th>price</th>
+                <th>comments</th>
+                <th>Rental Starts</th>
+                <th>Furnished</th>
+                <th>location</th>
+                <th>Picture</th>
+            </tr>
+            <tr v-for="x in rentals">
+                <td>{{x.ContactInfo}}</td>
+                <td>{{x.Bedrooms}}</td>
+                <td>{{x.Bathrooms}}</td>
+                <td>{{x.Price}}</td>
+                <td>{{x.Comments}}</td>
+                <td>{{x.Date | toShortDateString}}</td>
+                <td>{{x.Furnished | isFurnished}}</td>
+                <td :data-locationid="x.Location.Id">{{x.Location.City}} {{x.Location.State}} {{x.Location.Country}}</td>
+                <td>
+                    <button type="button" v-on:click="seePictures(x.Id)" class="btn btn-info" data-toggle="modal" data-target="#myModal">View Pictures</button>
+                </td>
+            </tr>
+        </table>
 
 
-    <!-- Modal -->
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Pictures</h4>
-                </div>
-                <div class="modal-body" style="background-color:burlywood">
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Pictures</h4>
+                    </div>
+                    <div class="modal-body" style="background-color:burlywood">
 
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
+                        <div class="row">
+                            <div class="col-md-6 col-md-offset-3">
 
-                            <div v-if="pictures.length > 0">
-                                <div v-for="pic in pictures">
-                                    <hr />
-                                    <img v-bind:src="'/UploadedImages/' + pic" style="width: 400px;" />
+                                <div v-if="pictures.length > 0">
+                                    <div v-for="pic in pictures">
+                                        <hr />
+                                        <img v-bind:src="'/UploadedImages/' + pic" style="width: 400px;" />
 
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div v-else>
-                                <h2>Sorry, No Photos were uploaded yet.</h2>
-                            </div>
+                                <div v-else>
+                                    <h2>Sorry, No Photos were uploaded yet.</h2>
+                                </div>
 
+                            </div>
                         </div>
                     </div>
-                </div>
 
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
-            </div>
             </div>
 
         </div>
 
+    </div>
 </div>
-
 
 @section scripts{
     <script src="~/Scripts/moment.js"></script>

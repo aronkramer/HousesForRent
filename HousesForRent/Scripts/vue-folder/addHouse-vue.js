@@ -70,7 +70,7 @@
             });
         },
         getLocations: function () {
-            $.get("/Leaser/GetLocations", result => {
+            $.get("/home/GetLocations", result => {
                 this.countryLocations = result;
             });
         },
@@ -112,6 +112,7 @@
         updateListing: function (index) {
             var item = this.listings[index];
             item.BaseObj.Date = moment.parseZone(item.BaseObj.Date).format("YYYY-MM-DD");
+            item.BaseObj.Expiration = moment.parseZone(item.BaseObj.Expiration).format("YYYY-MM-DD");
             if (item.BaseObj) {
                 $.post("/Leaser/Update", { listing: item.BaseObj });
                 item.Edit = !item.Edit;
