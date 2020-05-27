@@ -38,10 +38,8 @@ namespace HousesForRent.Controllers
             infoVM.Expiration =  DateTime.Today.AddMonths(2);
             var info = infoVM.ToViewModelSingle<LeasersInformationViewModel, LeasersInformation>();
             repo.AddHouse(info);
-            return Json(new
-            {
-                newUrl = Url.Action("UsersListings", "Leaser")
-            });
+            TempData["Recipient"] = "add";
+            return RedirectToAction("EmailRecipient", "Home");
         }
 
         public ActionResult GetUsersListings()
@@ -70,6 +68,10 @@ namespace HousesForRent.Controllers
             listing.UserId = repo.GetUserId(User.Identity.Name);
             listing.Location = new Location { Id = listing.LocationId };
             var hello = listing;
+            if(listing.ContactInfo == null)
+            {
+                return;
+            }
             var info = listing.ToViewModelSingle<LeasersInformationViewModel, LeasersInformation>();
             repo.Update(info);
             repo.SaveChanges();
@@ -116,13 +118,27 @@ namespace HousesForRent.Controllers
         }
 
         [HttpPost]
-        public void RenewAd(LeasersInformationViewModel listing)
+        public ActionResult RenewAd(LeasersInformationViewModel listing)
         {
             var repo = new LeaserRepository();
             listing.UserId = repo.GetUserId(User.Identity.Name);
             listing.Location = new Location { Id = listing.LocationId };
             var info = listing.ToViewModelSingle<LeasersInformationViewModel, LeasersInformation>();
             repo.RenewAdById(info);
+            TempData["Recipient"] = "renew";
+            return RedirectToAction("EmailRecipient", "Home");
+        }
+
+        [HttpPost]
+        public void DeleteItem(int listingId, string UserId)
+        {
+            var repo = new LeaserRepository();
+            var user = repo.GetUserId(User.Identity.Name);
+            if(user != UserId)
+            {
+                return;
+            }
+            repo.DeleteListing(listingId);
         }
     }
 }

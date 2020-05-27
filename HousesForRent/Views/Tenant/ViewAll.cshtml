@@ -29,33 +29,35 @@
             <button class="btn-link" v-on:click="allRentals();clearInputs()">refresh</button>
         </div>
 
-        <table id="RentalTable" class="table table-bordered" style="width:1000px; margin-top:30px;">
-            <tr>
-                <th>contact info</th>
-                <th>bedrooms</th>
-                <th>bathrooms</th>
-                <th>price</th>
-                <th>comments</th>
-                <th>Rental Starts</th>
-                <th>Furnished</th>
-                <th>location</th>
-                <th>Picture</th>
-            </tr>
-            <tr v-for="x in rentals">
-                <td>{{x.ContactInfo}}</td>
-                <td>{{x.Bedrooms}}</td>
-                <td>{{x.Bathrooms}}</td>
-                <td>{{x.Price}}</td>
-                <td>{{x.Comments}}</td>
-                <td>{{x.Date | toShortDateString}}</td>
-                <td>{{x.Furnished | isFurnished}}</td>
-                <td :data-locationid="x.Location.Id">{{x.Location.City}} {{x.Location.State}} {{x.Location.Country}}</td>
-                <td>
-                    <button type="button" v-on:click="seePictures(x.Id)" class="btn btn-info" data-toggle="modal" data-target="#myModal">View Pictures</button>
-                </td>
-            </tr>
-        </table>
+        <div style="overflow-y:scroll; height:1000px;">
+            <table id="RentalTable" class="table table-bordered" style="width:1000px; margin-top:30px;">
+                <tr>
+                    <th>contact info</th>
+                    <th>bedrooms</th>
+                    <th>bathrooms</th>
+                    <th>price</th>
+                    <th>comments</th>
+                    <th>Rental Starts</th>
+                    <th>Furnished</th>
+                    <th>location</th>
+                    <th>Picture</th>
+                </tr>
 
+                <tr v-for="x in rentals">
+                    <td>{{x.ContactInfo}}</td>
+                    <td>{{x.Bedrooms}}</td>
+                    <td>{{x.Bathrooms}}</td>
+                    <td>{{x.Price}}</td>
+                    <td>{{x.Comments}}</td>
+                    <td>{{x.Date | toShortDateString}}</td>
+                    <td>{{x.Furnished | isFurnished}}</td>
+                    <td :data-locationid="x.Location.Id">{{x.Location.City}} {{x.Location.State}} {{x.Location.Country}}</td>
+                    <td>
+                        <button type="button" v-on:click="seePictures(x.Id)" class="btn btn-info" data-toggle="modal" data-target="#myModal">View Pictures</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
 
         <!-- Modal -->
         <div id="myModal" class="modal fade" role="dialog">

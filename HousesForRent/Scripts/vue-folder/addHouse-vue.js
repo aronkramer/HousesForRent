@@ -34,26 +34,56 @@
         Edit: false,
         pictures: [],
         enabled: false,
-        indexForRenewAdModal: null
+        indexForRenewAdModal: null,
+        errors: []
     },
     methods: {
+        paymentModal: function () {
+            var cont = this.listingsInfo.ContactInfo;
+            var bed = this.listingsInfo.Bedrooms;
+            var bath = this.listingsInfo.Bathrooms;
+            var date = this.listingsInfo.Date;
+            var loc = this.listingsInfo.LocationId;
+            if (cont && bed && bath && date && loc) {
+                $('#addListingModal').modal();
+            }
+            else {
+                this.errors = [];
+
+                if (!cont) {
+                    this.errors.push('ContactInfo required.');
+                }
+                if (!bed) {
+                    this.errors.push('Bedrooms required.');
+                }
+                if (!bath) {
+                    this.errors.push('Bathrooms required.');
+                }
+                if (!date) {
+                    this.errors.push('Date required.');
+                }
+                if (!loc) {
+                    this.errors.push('Location required.');
+                }
+            }
+            
+        },
         addRental: function () {
             var cont = this.listingsInfo.ContactInfo;
             var bed = this.listingsInfo.Bedrooms;
             var bath = this.listingsInfo.Bathrooms;
             var date = this.listingsInfo.Date;
-            var loc = this.listingsInfo.LocationId
+            var loc = this.listingsInfo.LocationId;
             if (cont && bed && bath && date && loc) {
                 var locationId = this.theLocationId;
                 var info = this.listingsInfo;
                 info.LocationId = locationId;
                 $.ajax({
                     url: "/Leaser/AddRental",
-                    method: "POST", data: info
-                }).done(function (data) {
-                    console.log(data.newUrl);
-                    alert('Your listing has been submitted');
-                    window.location.replace(data.newUrl);
+                    method: "POST", data: info,
+                    success: function () {
+                        window.location = "/Leaser/UsersListings";
+                    },
                 });
             }
         },
@@ -137,7 +167,6 @@
             pause();
         },
         getIdToRenew: function (index) {
-            //this.idForRenewAdModal = Id;
             this.indexForRenewAdModal = index;
         },
         renewAd: function (index) {
@@ -150,7 +179,17 @@
                 window.location.reload();
             };
             pause();
-        }
+        },
+        deleteListing: function (index) {
+            var item = this.listings[index];
+            $.post(`/leaser/deleteItem`, { listingId: item.BaseObj.Id, userid: item.BaseObj.UserId });
+            const delay = ms => new Promise(res => setTimeout(res, ms));
+            const pause = async () => {
+                await delay(350);
+                window.location.reload();
+            };
+            pause();
+        },
     },
     filters: {
         toShortDateString: function (value) {

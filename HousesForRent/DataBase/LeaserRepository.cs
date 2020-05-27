@@ -108,5 +108,14 @@ namespace HousesForRent.DataBase
             user.Expiration = DateTime.Now.AddMonths(2);
             Update(user);
         }
+
+        public void DeleteListing(int listingId)
+        {
+            LeasersInformation LI = new LeasersInformation { Id = listingId };
+            context.LeasersInformations.Attach(LI);
+            context.LeasersInformations.Remove(LI);
+            context.SaveChanges();
+        }
+
     }
 }
