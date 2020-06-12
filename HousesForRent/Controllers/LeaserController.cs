@@ -35,7 +35,7 @@ namespace HousesForRent.Controllers
             var repo = new LeaserRepository();
             infoVM.UserId = repo.GetUserId(User.Identity.Name);
             infoVM.Location = new Location {Id = infoVM.LocationId };
-            infoVM.Expiration =  DateTime.Today.AddMonths(2);
+            infoVM.Expiration =  DateTime.Today.AddMonths(3);
             var info = infoVM.ToViewModelSingle<LeasersInformationViewModel, LeasersInformation>();
             repo.AddHouse(info);
             TempData["Recipient"] = "add";

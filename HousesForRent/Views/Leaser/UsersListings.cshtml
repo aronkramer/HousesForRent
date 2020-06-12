@@ -1,4 +1,4 @@
-﻿<h2 style="text-align:center; color:aliceblue">@User.Identity.Name</h2>
+﻿<h2 style="text-align:center; color:black">@User.Identity.Name</h2>
 
 @{
     ViewBag.Title = "View Your Listing";
@@ -21,7 +21,7 @@
         </option>
     </datalist>
 
-    <table class="table table-bordered table-striped well col-sm-6" style="right:150px;">
+    <table class="table table-bordered table-striped well col-sm-6" style="font-size:10px;">
         <tr>
             <th style="text-align:center">Pause ad</th>
             <th style="text-align:center">contact info</th>
@@ -107,7 +107,7 @@
 
                 @*pictures*@
                 <td width="50%">
-                    <button type="button" v-on:click="seePictures(x.BaseObj.Id)" class="btn btn-info" data-toggle="modal" data-target="#myModal">View Pictures</button>
+                    <button type="button" v-on:click="seePictures(x.BaseObj.Id)" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">View Pictures</button>
                 </td>
 
                 <td width="50%">
@@ -115,17 +115,17 @@
                         <input hidden v-model="x.BaseObj.Id" name="Id" />
                         <input type="file" name="imagefile" required />
                         <br />
-                        <button class="btn btn-success">Submit</button>
+                        <button class="btn btn-success btn-sm">Submit</button>
                     </form>
                 </td>
 
                 <td v-if="!x.Edit" :style="{ background: x.BaseObj.Expired ? 'red' : 'white' }">
-                    <button class="btn-group-justified btn btn-primary" v-on:click="makeEditable(x)">Edit</button>
+                    <button class="btn-group-justified btn btn-primary btn-sm" v-on:click="makeEditable(x)">Edit</button>
                     <br />
-                    <button href="#deleteModal" class="btn-group-justified btn btn-danger" data-toggle="modal" v-on:click="getIdToRenew(index)">Delete</button>
+                    <button href="#deleteModal" class="btn-group-justified btn btn-danger btn-sm" data-toggle="modal" v-on:click="getIdToRenew(index)">Delete</button>
                     <template v-if="x.BaseObj.Expired">
                         <br />
-                        <button class="btn-group-justified btn btn-warning" v-on:click="getIdToRenew(index)"
+                        <button class="btn-group-justified btn btn-warning btn-sm" v-on:click="getIdToRenew(index)"
                                 data-toggle="modal" data-target="#renewAdModal">
                             Renew ad
                         </button>
@@ -190,10 +190,21 @@
                     <h4 class="modal-title">renew ad</h4>
                 </div>
                 <div class="modal-body" style="background-color:burlywood">
-                    <button v-on:click="renewAd(indexForRenewAdModal)">Renew add</button>
-
+                    <center>
+                        <h5>Pay with your credit card via Cardknox.</h5>
+                        <hr />
+                        <label>Card number</label>
+                        <input placeholder=".... .... .... ...." class="form-control" />
+                        <br />
+                        <label>Expire (MM/YY)</label>
+                        <input placeholder="MM/YY" class="form-control" />
+                        <br />
+                        <label>Card code</label>
+                        <input placeholder="CVV" class="form-control" />
+                        <br />
+                        <button v-on:click="renewAd(indexForRenewAdModal)">Renew add</button>
+                    </center>
                 </div>
-
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -213,7 +224,11 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <p>Do you really want to delete this listing? This process cannot be undone, and you will not get a refund.</p>
+                    <p>
+                        Do you really want to delete this listing?
+                        This process cannot be undone, and you will not get a refund.
+                    </p>
+                    <p>You can pause your ad if you don't want it to be shown to the public, by clicking on hide in the "pause ad" column.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>

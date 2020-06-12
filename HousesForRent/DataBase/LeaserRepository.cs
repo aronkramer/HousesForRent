@@ -105,7 +105,7 @@ namespace HousesForRent.DataBase
 
         public void RenewAdById(LeasersInformation user)
         {
-            user.Expiration = DateTime.Now.AddMonths(2);
+            user.Expiration = DateTime.Now.AddMonths(3);
             Update(user);
         }
 

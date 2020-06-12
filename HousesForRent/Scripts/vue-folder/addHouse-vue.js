@@ -51,7 +51,7 @@
                 this.errors = [];
 
                 if (!cont) {
-                    this.errors.push('ContactInfo required.');
+                    this.errors.push('Phone Number required.');
                 }
                 if (!bed) {
                     this.errors.push('Bedrooms required.');

@@ -58,7 +58,7 @@ namespace HousesForRent.Controllers
         public void EmailRecipient()
         {
             var email = User.Identity.Name;
-
+            var expiration = DateTime.Now.AddMonths(3).ToShortDateString();
             //if (!string.IsNullOrEmpty(email) && new EmailAddressAttribute().IsValid(email))
             //{
             //    return;
@@ -73,12 +73,12 @@ namespace HousesForRent.Controllers
             if (r == "renew")
             {
                 subject = "Message from frumrental: Renewed";
-                body = "You have successfully renewed your listing. If you have any question please reply to this email";
+                body = $"You have successfully renewed your listing. If you have any question please reply to this email. Ad will expire {expiration}";
             }
             if (r == "add")
             {
                 subject = "Message from frumrental: Added";
-                body = "You have successfully Added your listing. If you have any question please reply to this email";
+                body = $"You have successfully Added your listing. If you have any question please reply to this email. Ad will expire {expiration}";
             }
 
             var smtp = new SmtpClient

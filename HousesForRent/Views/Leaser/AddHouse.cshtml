@@ -10,9 +10,9 @@
         </option>
     </datalist>
     <form class="cmxform" id="commentForm">
-        <div class="well col-md-5 col-md-offset-3">
+        <div class="well col-md-6 col-md-offset-3">
             <center>
-                <h3 style="background-color:aqua">Add New Listing</h3>
+                <h5>Add Rental</h5>
                 <div style="background-color:palevioletred">
                     <p v-if="errors.length">
                         <b>Please correct the following error(s):</b>
@@ -21,34 +21,43 @@
                         </ul>
                     </p>
                 </div>
-                <label>Phone Number or Email</label>
-                <input class="form-control" v-model="listingsInfo.ContactInfo" placeholder="Contactinfo" required />
+                <div class="row">
 
-                <label>Amount of Bedrooms</label>
-                <input class="form-control" v-model="listingsInfo.Bedrooms" placeholder="Bedrooms" required type="number" />
+                    <div class="form-inline">
+                        <input class="form-control" v-model="listingsInfo.ContactInfo" placeholder="Phone Number" required />
+                        <input class="form-control" v-model="listingsInfo.Bedrooms" placeholder="Bedrooms" required type="number" />
+                    </div>
 
-                <label>Amount of Bathrooms (.5 for half)</label>
-                <input class="form-control" v-model="listingsInfo.Bathrooms" placeholder="Bathrooms" required type="number" step="0.5" />
+                    <div class="form-inline">
+                        <input class="form-control" v-model="listingsInfo.Bathrooms" placeholder="Bathrooms (.5 for half)" required type="number" step="0.5" />
+                        <input class="form-control" v-model="listingsInfo.Price" placeholder="Price (optional)" type="number" />
+                    </div>
 
-                <label>Price</label>
-                <input class="form-control" v-model="listingsInfo.Price" placeholder="Price (optional)" type="number" />
+                    <div>
+                        <label style="text-align:center">
+                            Please note you can't change the location in edit. 
+                        If city is not found contact us by <a href="/home/index" class="btn-link">clicking here</a>
+                        </label>
 
-                <label>
-                    Location (please note. You can't change the location in edit. choose wisely.
-                    If city is not found <a href="/home/index" class="btn-link">click here</a>.
-                </label>
+                        <input class="form-control" v-model="listingsInfo.LocationId" list="country" id="getLocationId" v-on:change="getLocationIdOnInput()" placeholder="Location" required />
+                    </div>
 
-                <input class="form-control" v-model="listingsInfo.LocationId" list="country" id="getLocationId" v-on:change="getLocationIdOnInput()" placeholder="Location" required />
+                    <div>
+                        <label>Starting Date of rental</label>
+                        <input class="form-control" v-model="listingsInfo.Date" type="date" required />
+                    </div>
+                    <br />
+                    <div>
+                        <textarea class="form-control" v-model="listingsInfo.Comments" placeholder="Comments (optional)" rows="7"></textarea>
+                    </div>
 
-                <label>Date of rental</label>
-                <input class="form-control" v-model="listingsInfo.Date" type="date" required />
+                    <div class="form-inline">
+                        <label>Furnished</label>
+                        <input type="checkbox" v-model="listingsInfo.Furnished" /><br />
+                    </div>
 
-                <label>Comments</label>
-                <textarea class="form-control" v-model="listingsInfo.Comments" placeholder="Comments (optional)" rows="7"></textarea>
-
-                <label>Furnished</label>
-                <input type="checkbox" v-model="listingsInfo.Furnished" /><br />
-                <a class="btn btn-primary" v-on:click="paymentModal()">Add Listing</a>
+                    <a class="btn btn-primary" v-on:click="paymentModal()">Pay Here</a>
+                </div>
             </center>
         </div>
 
@@ -63,8 +72,20 @@
                     <h4 class="modal-title">Payment</h4>
                 </div>
                 <div class="modal-body" style="background-color:burlywood">
-                    <button v-on:click="addRental()" type="button" class="btn btn-primary">Submit</button>
-
+                    <center>
+                        <h5>Pay with your credit card via Cardknox.</h5>
+                        <hr />
+                        <label>Card number</label>
+                        <input placeholder=".... .... .... ...." class="form-control" />
+                        <br />
+                        <label>Expire (MM/YY)</label>
+                        <input placeholder="MM/YY" class="form-control" />
+                        <br />
+                        <label>Card code</label>
+                        <input placeholder="CVV" class="form-control" />
+                        <br />
+                        <button v-on:click="addRental()" type="button" class="btn btn-primary">Submit</button>
+                    </center>
                 </div>
 
 
