@@ -54,15 +54,7 @@ namespace HousesForRent
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
-
-            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            {
-                ClientId = "657169755288-04nrnhtjrsa2ne2vnepptri1469bs2fb.apps.googleusercontent.com",
-                ClientSecret = "7gWuZDSGYi9VpwaEFnjJluOC"
-            });
+        
         }
     }
 }
