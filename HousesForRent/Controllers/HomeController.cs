@@ -25,8 +25,8 @@ namespace HousesForRent.Controllers
             //{
             //    return;
             //}
-            var fromAddress = new MailAddress("frumrental@gmail.com", "Frum rental");
-            var toAddress = new MailAddress("frumrental@gmail.com");
+            var fromAddress = new MailAddress("gmail", "Frum rental");
+            var toAddress = new MailAddress("gmail.com");
             
             string fromPassword = ConfigurationManager.AppSettings["Password"].ToString();
             string subject = "Message from frumrental";
@@ -63,7 +63,7 @@ namespace HousesForRent.Controllers
             //{
             //    return;
             //}
-            var fromAddress = new MailAddress("frumrental@gmail.com", "Frum rental");
+            var fromAddress = new MailAddress("gmail.com", "Frum rental");
             var toAddress = new MailAddress(email);
 
             string fromPassword = ConfigurationManager.AppSettings["Password"].ToString();
