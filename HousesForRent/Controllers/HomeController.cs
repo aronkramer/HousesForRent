@@ -23,6 +23,7 @@ namespace HousesForRent.Controllers
         {
             //if (!string.IsNullOrEmpty(email) && new EmailAddressAttribute().IsValid(email))
             //{
+            //    test
             //    return;
             //}
             var fromAddress = new MailAddress("gmail", "Frum rental");
